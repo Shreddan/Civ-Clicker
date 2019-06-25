@@ -44,6 +44,12 @@ public:
 	bool achieveSelected = false;
 	bool creditSelected = false;
 
+	//Upgrade bools
+	bool upgrade1 = false;
+	bool upgrade2 = false;
+	bool upgrade3 = false;
+
+
 	//Back bools
 	bool hBackselected = false;
 	bool bBackselected = false;
@@ -116,6 +122,9 @@ public:
 	int alpha2 = 0;
 	int alpha3 = 0;
 	int alpha4 = 0;
+
+
+
 
 
 	std::string settleSize(std::string& type, int houseTotal, int farmTotal, int timberyardTotal, int quarryTotal, int mineTotal, int mintTotal)
@@ -202,22 +211,13 @@ public:
 		stoneGatherRate = stoneGatherers * 1.3f + stoneModifier;
 		metalGatherRate = Miners * 1.5 + metalModifier;
 		coinGatherRate = Minters * 1.1 + coinModifier;
-
-		/*if (woodGatherers == 0)
-		{
-			woodGatherRate = 0;
-		}
-		if (foodGatherers == 0)
-		{
-			foodGatherRate = 0;
-		}*/
 		return std::make_tuple(woodGatherRate, foodGatherRate, stoneGatherRate, metalGatherRate, coinGatherRate);
 	}
 
 	int TickSystem(float& tick, int Population, float& fElapsedTime, int& gameTick, float& woodGatherRate, float& foodGatherRate, float& stoneGatherRate, float& metalGatherRate, float& coinGatherRate, float& Wood, float& Food, float& Stone, float& Metal, float& Coin, int woodGatherers, int foodGatherers, int stoneGatherers, int Miners, int Minters, float woodModifier, float foodModifier, float stoneModifier, float metalModifier, float coinModifier)
 	{
 		tick += fElapsedTime;
-		if (tick >= 3.0f)
+		if (tick >= 2.5f)
 		{
 			foodConsump(Food, Population);
 			gatherRates(woodGatherRate, foodGatherRate, stoneGatherRate, metalGatherRate, coinGatherRate, woodGatherers, foodGatherers, stoneGatherers, Miners, Minters, woodModifier, foodModifier, stoneModifier, metalModifier, coinModifier);
@@ -267,7 +267,15 @@ public:
 
 	int calculatePopCap(int& houseTotal, int& popCap)
 	{
-		popCap = houseTotal * 5;
+		if (upgrade1)
+		{
+			popCap = houseTotal * 7;
+		}
+		else
+		{
+			popCap = houseTotal * 5;
+		}
+		
 		return popCap;
 	}
 
@@ -281,8 +289,24 @@ public:
 
 	std::tuple<float, float, float, float, float> calculateModifiers(int& farmTotal, int& timberyardTotal, int& quarryTotal, int& mineTotal, int& mintTotal)
 	{
-		foodModifier = farmTotal / 3;
-		woodModifier = timberyardTotal / 3;
+		if (upgrade2)
+		{
+			foodModifier = farmTotal / 2;
+		}
+		else
+		{
+			foodModifier = farmTotal / 3;
+		}
+
+		if (upgrade3)
+		{
+			woodModifier = timberyardTotal / 2;
+		}
+		else
+		{
+			woodModifier = timberyardTotal / 3;
+		}
+		
 		stoneModifier = quarryTotal / 3;
 		metalModifier = mineTotal / 3;
 		coinModifier = mintTotal / 3;
@@ -491,6 +515,35 @@ public:
 			hBackselected = false;
 		}
 
+		//Upgrade Inputs
+
+		if (GetMouseX() >= 400 && GetMouseX() <= 450 && GetMouseY() >= 90 && GetMouseY() <= 140 && GameState == Upgrades)
+		{
+			if (GetMouse(0).bPressed && !upgrade1 && Coin > 100)
+			{
+				Coin -= 100;
+				upgrade1 = true;
+			}
+		}
+		else if (GetMouseX() >= 400 && GetMouseX() <= 450 && GetMouseY() >= 160 && GetMouseY() <= 210 && GameState == Upgrades)
+		{
+			if (GetMouse(0).bPressed && !upgrade2 && Coin > 200)
+			{
+				Coin -= 200;
+				upgrade2 = true;
+			}
+
+		}
+		else if (GetMouseX() >= 400 && GetMouseX() <= 450 && GetMouseY() >= 230 && GetMouseY() <= 280 && GameState == Upgrades)
+		{
+			if (GetMouse(0).bPressed && !upgrade3 && Coin > 300)
+			{
+				Coin -= 300;
+				upgrade3 = true;
+			}
+		}
+
+
 		//BuildingScreen Inputs
 		if (GetMouseX() >= 550 && GetMouseX() <= 590 && GetMouseY() >= 100 && GetMouseY() <= 130 && GameState == BuildingScreen)
 		{
@@ -667,6 +720,7 @@ public:
 			DrawString(50, 100, type, olc::DARK_GREEN, 3U);
 			DrawString(350, 50, "Population = " + std::to_string(Population), olc::WHITE, 3U);
 			DrawString(450, 80, "Idle = " + std::to_string(IdlePop), olc::WHITE, 2U);
+			DrawString(800, 50, "Cap = " + std::to_string(popCap), olc::WHITE, 2U);
 
 			//Resource - Left
 			DrawString(120, 175, "Wood = " + ftos(Wood), olc::WHITE, 2U);
@@ -770,14 +824,15 @@ public:
 
 		case HelpScreen:
 		{
-			DrawString(80, 125, "Press F to assign a Food Gatherer", olc::WHITE, 2U);
-			DrawString(80, 150, "Press S to assign a Stone Gatherer", olc::WHITE, 2U);
-			DrawString(80, 175, "Hold Ctrl and press to unassign a gatherer", olc::WHITE, 2U);
-			DrawString(80, 225, "Press 2 to show building screen", olc::WHITE, 2U);
-			DrawString(80, 250, "Press Z to build a house (Requires 10 Wood)", olc::WHITE, 2U);
-			DrawString(80, 275, "Press X to build a farm (Requires 15 Stone)", olc::WHITE, 2U);
-			DrawString(80, 300, "Press C to build a Timber Yard (Requires 15 Metal)", olc::WHITE, 2U);
-			DrawString(80, 325, "Press V to build a Quarry (Requires 10 Metal and 5 Wood)", olc::WHITE, 2U);
+			DrawString(30, 100, "Welcome to Civ-Clicker", olc::WHITE, 2U);
+			
+			DrawString(30, 150, "Build Houses to increase your Population Cap", olc::WHITE, 2U);
+			DrawString(30, 175, "buildings other than houses give a boost to the workers", olc::WHITE, 2U);
+			DrawString(30, 225, "the aim is to increase your settlement size", olc::WHITE, 2U);
+			DrawString(30, 250, "for this you will need to gather resources and use them to build.", olc::WHITE, 2U);
+			DrawString(30, 275, "The higher your Population, the more food they will require", olc::WHITE, 2U);
+			DrawString(30, 300, "Evetrything in brackets beside a button is a requirement", olc::WHITE, 2U);
+			DrawString(30, 325, "Will you get all the achievements?", olc::WHITE, 2U);
 
 			FillRect(500, 550, 110, 50, olc::DARK_GREY);
 			DrawString(525, 565, "Back", olc::WHITE, 2U);
@@ -797,7 +852,8 @@ public:
 			DrawString(120, 150, "Farm Total = " + std::to_string(farmTotal), olc::WHITE, 2U);
 			DrawString(120, 200, "TimberYard Total = " + std::to_string(timberyardTotal), olc::WHITE, 2U);
 			DrawString(120, 250, "Quarry Total = " + std::to_string(quarryTotal), olc::WHITE, 2U);
-			DrawString(120, 300, "Mint Total = " + std::to_string(mintTotal), olc::WHITE, 2U);
+			DrawString(120, 300, "Mine Total = " + std::to_string(mineTotal), olc::WHITE, 2U);
+			DrawString(120, 350, "Mint Total = " + std::to_string(mintTotal), olc::WHITE, 2U);
 
 			//Building Buttons
 			FillRect(550, 100, 40, 30, olc::DARK_GREY);
@@ -805,14 +861,21 @@ public:
 			FillRect(550, 200, 40, 30, olc::DARK_GREY);
 			FillRect(550, 250, 40, 30, olc::DARK_GREY);
 			FillRect(550, 300, 40, 30, olc::DARK_GREY);
+			FillRect(550, 350, 40, 30, olc::DARK_GREY);
 
 			//Button Text
 			DrawString(565, 109, "+", olc::GREEN, 2U);
+			DrawString(610, 109, "(10 Wood)", olc::WHITE, 1U);
 			DrawString(565, 159, "+", olc::GREEN, 2U);
+			DrawString(610, 159, "(15 Wood)", olc::WHITE, 1U);
 			DrawString(565, 209, "+", olc::GREEN, 2U);
+			DrawString(610, 209, "(10 Metal)", olc::WHITE, 1U);
 			DrawString(565, 259, "+", olc::GREEN, 2U);
+			DrawString(610, 259, "(10 Metal & 5 Wood)", olc::WHITE, 1U);
 			DrawString(565, 309, "+", olc::GREEN, 2U);
-
+			DrawString(610, 309, "(25 Metal & 15 Wood)", olc::WHITE, 1U);
+			DrawString(565, 359, "+", olc::GREEN, 2U);
+			DrawString(610, 359, "(50 Metal)", olc::WHITE, 1U);
 
 			//Achievement notif
 			SetPixelMode(olc::Pixel::ALPHA);
@@ -834,6 +897,41 @@ public:
 		{
 			DrawString(360, 30, "UPGRADES", olc::YELLOW, 4U);
 			DrawLine(360, 60, 610, 60, olc::YELLOW);
+
+			DrawString(120, 100, "Bigger Houses", olc::WHITE, 2U);
+			DrawString(120, 170, "Crop Rotation", olc::WHITE, 2U);
+			DrawString(120, 240, "Better Hatchets", olc::WHITE, 2U);
+
+			if (upgrade1)
+			{
+				FillRect(400, 90, 40, 40, olc::GREEN);
+			}
+			else
+			{
+				FillRect(400, 90, 40, 40, olc::RED);
+			}
+			
+			if (upgrade2)
+			{
+				FillRect(400, 160, 40, 40, olc::GREEN);
+			}
+			else
+			{
+				FillRect(400, 160, 40, 40, olc::RED);
+			}
+
+			if (upgrade3)
+			{
+				FillRect(400, 230, 40, 40, olc::GREEN);
+			}
+			else
+			{
+				FillRect(400, 230, 40, 40, olc::RED);
+			}
+
+			DrawString(460, 100, "(100 Coins)", olc::WHITE, 1U);
+			DrawString(460, 170, "(200 Coins)", olc::WHITE, 1U);
+			DrawString(460, 240, "(300 Coins)", olc::WHITE, 1U);
 
 
 			FillRect(500, 550, 110, 50, olc::DARK_GREY);
@@ -874,7 +972,8 @@ public:
 			DrawString(60, 100, " Creator : Danicron (Daniel Twitchett) ", olc::WHITE, 3U);
 			DrawString(60, 130, " Assisted by : Javidx9 ", olc::WHITE, 3U);
 			DrawString(395, 160, " Gorbit99 ", olc::WHITE, 3U);
-
+			DrawString(60, 200, "and of course the rest of the OneLoneCoder Community", olc::WHITE, 2U);
+			DrawString(60, 215, " for being my rubber duckies!", olc::WHITE, 2U);
 			FillRect(500, 550, 110, 50, olc::DARK_GREY);
 			DrawString(525, 565, "Back", olc::WHITE, 2U);
 
