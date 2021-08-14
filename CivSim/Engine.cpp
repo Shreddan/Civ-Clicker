@@ -543,27 +543,9 @@ void Engine::populateButtonVec()
 {
 	int bwidth = 300;
 	int bheight = 60;
-
-	Button b;
-	b.originx = 420;
-	b.originy = 150;
-	b.w = bwidth;
-	b.h = bheight;
-	Main.emplace_back(b);
-	
-	Button c;
-	c.originx = 420;
-	c.originy = 250;
-	c.w = bwidth;
-	c.h = bheight;
-	Main.emplace_back(c);
-
-	Button d;
-	d.originx = 420;
-	d.originy = 350;
-	d.w = bwidth;
-	d.h = bheight;
-	Main.emplace_back(d);
+	Main.emplace_back("Start", 420, 150, bwidth, bheight);
+	Main.emplace_back("Options", 420, 250, bwidth, bheight);
+	Main.emplace_back("Quit", 420, 350, bwidth, bheight);
 }
 
 bool Engine::OnUserCreate()
@@ -594,8 +576,8 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 	{
 	case MainMenu:
 	{
-		FillRect(150, 50, 800, 500, olc::GREY);
-		DrawString(400, 80, "Civ-Clicker", olc::Pixel(160, 82, 45), 4U);
+		FillRect(olc::vf2d(150, 50), olc::vf2d(800, 500), olc::GREY);
+		DrawStringDecal(olc::vf2d(400, 80), "Civ-Clicker", olc::Pixel(160, 82, 45), olc::vf2d(4.f, 4.f));
 
 		for (size_t i = 0; i < Main.size(); i++)
 		{
@@ -603,9 +585,9 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 		}
 
 		//Button Text
-		DrawString(510, 170, "Start", olc::BLACK, 3U);
-		DrawString(490, 270, "Options", olc::BLACK, 3U);
-		DrawString(520, 370, "Quit", olc::BLACK, 3U);
+		//DrawStringDecal(olc::vf2d(510, 170), "Start", olc::BLACK, olc::vf2d(3.f, 3.f));
+		//DrawStringDecal(olc::vf2d(490, 270), "Options", olc::BLACK, olc::vf2d(3.f, 3.f));
+		//DrawStringDecal(olc::vf2d(520, 370), "Quit", olc::BLACK, olc::vf2d(3.f, 3.f));
 
 		if (startSelected)
 		{
