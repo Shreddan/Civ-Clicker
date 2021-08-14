@@ -539,9 +539,37 @@ void Engine::userInput()
 	}
 }
 
+void Engine::populateButtonVec()
+{
+	int bwidth = 300;
+	int bheight = 60;
+
+	Button b;
+	b.originx = 420;
+	b.originy = 150;
+	b.w = bwidth;
+	b.h = bheight;
+	Main.emplace_back(b);
+	
+	Button c;
+	c.originx = 420;
+	c.originy = 250;
+	c.w = bwidth;
+	c.h = bheight;
+	Main.emplace_back(c);
+
+	Button d;
+	d.originx = 420;
+	d.originy = 350;
+	d.w = bwidth;
+	d.h = bheight;
+	Main.emplace_back(d);
+}
+
 bool Engine::OnUserCreate()
 {
 	srand(time(NULL));
+	populateButtonVec();
 	return true;
 }
 
@@ -569,10 +597,10 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 		FillRect(150, 50, 800, 500, olc::GREY);
 		DrawString(400, 80, "Civ-Clicker", olc::Pixel(160, 82, 45), 4U);
 
-		//Buttons
-		FillRect(420, 150, 300, 60, olc::DARK_GREY);
-		FillRect(420, 250, 300, 60, olc::DARK_GREY);
-		FillRect(420, 350, 300, 60, olc::DARK_GREY);
+		for (size_t i = 0; i < Main.size(); i++)
+		{
+			Main[i].DrawSelf(this);
+		}
 
 		//Button Text
 		DrawString(510, 170, "Start", olc::BLACK, 3U);

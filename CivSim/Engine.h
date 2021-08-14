@@ -46,6 +46,17 @@ public:
 
 	void userInput();
 
+	void populateButtonVec();
+
+	std::vector<Button> Main;
+	std::vector<Button> Game;
+	std::vector<Button> Help;
+	std::vector<Button> Build;
+	std::vector<Button> Upgrade;
+	std::vector<Button> Achieve;
+	std::vector<Button> Credit;
+	std::vector<Button> Option;
+
 protected:
 
 	bool OnUserCreate();
@@ -145,7 +156,7 @@ protected:
 	int alpha2 = 0;
 	int alpha3 = 0;
 	int alpha4 = 0;
-	std::vector<Button>
+
 
 };
 

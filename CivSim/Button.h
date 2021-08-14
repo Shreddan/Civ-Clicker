@@ -1,6 +1,5 @@
 #pragma once
 #include "olcPixelGameEngine.h"
-#include "Engine.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -10,13 +9,14 @@
 class Button
 {
 public:
+	Button();
 	Button(int ox, int oy, int w, int h);
 	~Button();
 
 	void DrawSelf(olc::PixelGameEngine* pge);
 	
 
-private:
+	std::string label;
 	int originx;
 	int originy;
 	int w;

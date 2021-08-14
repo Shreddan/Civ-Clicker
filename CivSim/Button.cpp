@@ -1,5 +1,9 @@
 #include "Button.h"
 
+Button::Button()
+{
+}
+
 Button::Button(int ox, int oy, int w, int h)
 {
 	this->originx = ox;
