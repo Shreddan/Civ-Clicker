@@ -1,10 +1,5 @@
 #pragma once
-#include "olcPixelGameEngine.h"
-#include <iostream>
-#include <iomanip>
-#include <sstream>
-#include <ctime>
-#include <tuple>
+#include "Button.h"
 
 class Engine : public olc::PixelGameEngine
 {
@@ -150,6 +145,7 @@ protected:
 	int alpha2 = 0;
 	int alpha3 = 0;
 	int alpha4 = 0;
+	std::vector<Button>
 
 };
 

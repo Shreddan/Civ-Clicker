@@ -12,15 +12,15 @@ Engine::~Engine()
 
 std::string Engine::settleSize(std::string& type, int houseTotal, int farmTotal, int timberyardTotal, int quarryTotal, int mineTotal, int mintTotal)
 {
-	if (houseTotal >= 5 && farmTotal == 1)
+	if (houseTotal >= 10 && farmTotal == 1)
 	{
 		type = "Town";
 	}
-	else if (houseTotal >= 15 && farmTotal == 3 && timberyardTotal == 1)
+	else if (houseTotal >= 20 && farmTotal == 3 && timberyardTotal == 1)
 	{
 		type = "City";
 	}
-	else if (houseTotal >= 25 && farmTotal == 8 && timberyardTotal == 3 && Population >= 100)
+	else if (houseTotal >= 50 && farmTotal == 8 && timberyardTotal == 3 && Population >= 100)
 	{
 		type = "County";
 	}
