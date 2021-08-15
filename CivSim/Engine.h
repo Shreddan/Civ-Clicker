@@ -63,10 +63,10 @@ protected:
 
 	bool OnUserUpdate(float fElapsedTime);
 
-	//MainMenu bools
-	bool startSelected = false;
-	bool optionsSelected = false;
-	bool quitSelected = false;
+	////MainMenu bools
+	//bool startSelected = false;
+	//bool optionsSelected = false;
+	//bool quitSelected = false;
 
 	//Options bools
 	bool backSelected = false;

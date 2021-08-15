@@ -201,38 +201,6 @@ std::tuple<float, float, float, float, float> Engine::calculateModifiers(int& fa
 
 void Engine::userInput()
 {
-	//Main Menu Inputs
-
-	if (GetMouseX() >= 420 && GetMouseX() <= 720 && GetMouseY() >= 150 && GetMouseY() <= 210 && GameState == MainMenu)
-	{
-		startSelected = true;
-		if (GetMouse(0).bPressed && startSelected == true)
-		{
-			GameState = GameScreen;
-			startSelected = false;
-		}
-
-	}
-	else if (GetMouseX() >= 420 && GetMouseX() <= 720 && GetMouseY() >= 250 && GetMouseY() <= 310 && GameState == MainMenu)
-	{
-		optionsSelected = true;
-		if (GetMouse(0).bPressed && optionsSelected == true)
-		{
-			GameState = Options;
-			optionsSelected = false;
-		}
-	}
-	else if (GetMouseX() >= 420 && GetMouseX() <= 720 && GetMouseY() >= 350 && GetMouseY() <= 410 && GameState == MainMenu)
-	{
-		quitSelected = true;
-	}
-	else
-	{
-		startSelected = false;
-		optionsSelected = false;
-		quitSelected = false;
-	}
-
 	//Options Inputs
 
 	if (GetMouseX() >= 420 && GetMouseX() <= 720 && GetMouseY() >= 350 && GetMouseY() <= 410 && GameState == Options)
@@ -541,11 +509,11 @@ void Engine::userInput()
 
 void Engine::populateButtonVec()
 {
-	int bwidth = 300;
-	int bheight = 60;
-	Main.emplace_back("Start", 420, 150, bwidth, bheight);
-	Main.emplace_back("Options", 420, 250, bwidth, bheight);
-	Main.emplace_back("Quit", 420, 350, bwidth, bheight);
+	Main.emplace_back("Start", 420, 150, 300, 60, GameScreen, 0, olc::DARK_GREY);
+	Main.emplace_back("Options", 420, 250, 300, 60, Options, 0, olc::DARK_GREY);
+	Main.emplace_back("Quit", 420, 350, 300, 60, -1, 0, olc::DARK_GREY);
+
+	//Game.emplace_back("+", 920, 140, 40, 30, std::make_pair(GameScreen, 0), olc::GREY);
 }
 
 bool Engine::OnUserCreate()
@@ -570,7 +538,7 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 
 	userInput();
 	checkAchievements(alpha1, alpha2, alpha3, alpha4, achieve, alpha0, anotherHouseComplete, farmHandComplete, timberrrComplete, expansionComplete);
-
+	
 
 	switch (GameState)
 	{
@@ -583,28 +551,8 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 		{
 			Main[i].DrawSelf(this);
 			Main[i].onHover(this);
+			
 		}
-
-		//Button Text
-		//DrawStringDecal(olc::vf2d(510, 170), "Start", olc::BLACK, olc::vf2d(3.f, 3.f));
-		//DrawStringDecal(olc::vf2d(490, 270), "Options", olc::BLACK, olc::vf2d(3.f, 3.f));
-		//DrawStringDecal(olc::vf2d(520, 370), "Quit", olc::BLACK, olc::vf2d(3.f, 3.f));
-
-		
-		/*else if (optionsSelected)
-		{
-			DrawRect(420, 250, 300, 60, olc::YELLOW);
-		}
-		else if (quitSelected)
-		{
-			DrawRect(420, 350, 300, 60, olc::YELLOW);
-			if (GetMouse(0).bPressed)
-			{
-				return false;
-			}
-		}*/
-
-
 		break;
 	}
 
@@ -633,7 +581,7 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 		DrawString(580, 400, "Total Gatherers = " + std::to_string(totalGatherers), olc::WHITE, 2U);
 
 		//Add&Remove Worker Buttons
-		FillRect(920, 140, 40, 30, olc::GREY);
+		//FillRect();
 		FillRect(970, 140, 40, 30, olc::GREY);
 
 		FillRect(920, 190, 40, 30, olc::GREY);
@@ -890,8 +838,14 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 		}
 		break;
 	}
+	case -1:
+	{
+		return false;
+		break;
+	}
 
 	}
+
 
 	if (alpha0 > 0)
 	{
