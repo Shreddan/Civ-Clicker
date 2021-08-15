@@ -582,6 +582,7 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 		for (size_t i = 0; i < Main.size(); i++)
 		{
 			Main[i].DrawSelf(this);
+			Main[i].onHover(this);
 		}
 
 		//Button Text
@@ -589,11 +590,8 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 		//DrawStringDecal(olc::vf2d(490, 270), "Options", olc::BLACK, olc::vf2d(3.f, 3.f));
 		//DrawStringDecal(olc::vf2d(520, 370), "Quit", olc::BLACK, olc::vf2d(3.f, 3.f));
 
-		if (startSelected)
-		{
-			DrawRect(420, 150, 300, 60, olc::YELLOW);
-		}
-		else if (optionsSelected)
+		
+		/*else if (optionsSelected)
 		{
 			DrawRect(420, 250, 300, 60, olc::YELLOW);
 		}
@@ -604,7 +602,7 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 			{
 				return false;
 			}
-		}
+		}*/
 
 
 		break;
@@ -727,11 +725,11 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 		DrawString(30, 225, "the aim is to increase your settlement size", olc::WHITE, 2U);
 		DrawString(30, 250, "for this you will need to gather resources and use them to build.", olc::WHITE, 2U);
 		DrawString(30, 275, "The higher your Population, the more food they will require", olc::WHITE, 2U);
-		DrawString(30, 300, "Evetrything in brackets beside a button is a requirement", olc::WHITE, 2U);
+		DrawString(30, 300, "Everything in brackets beside a button is a requirement", olc::WHITE, 2U);
 		DrawString(30, 325, "Will you get all the achievements?", olc::WHITE, 2U);
 
 		FillRect(500, 550, 110, 50, olc::DARK_GREY);
-		DrawString(525, 565, "Back", olc::WHITE, 2U);
+		DrawStringDecal(olc::vf2d(525, 565), "Back", olc::WHITE, olc::vf2d(2.f, 2.f));
 
 		if (hBackselected)
 		{

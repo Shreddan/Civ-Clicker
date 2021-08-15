@@ -9,11 +9,11 @@
 class Button
 {
 public:
-	Button();
 	Button(std::string label, int ox, int oy, int w, int h);
 	~Button();
 
 	void DrawSelf(olc::PixelGameEngine* pge);
+	void onHover(olc::PixelGameEngine* pge);
 
 	std::string label;
 	int originx;
