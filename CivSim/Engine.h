@@ -63,10 +63,7 @@ protected:
 
 	bool OnUserUpdate(float fElapsedTime);
 
-	////MainMenu bools
-	//bool startSelected = false;
-	//bool optionsSelected = false;
-	//bool quitSelected = false;
+	std::deque<std::pair<int, int>> eventQ;
 
 	//Options bools
 	bool backSelected = false;

@@ -10,8 +10,6 @@ Button::Button(std::string label, int ox, int oy, int w, int h, int inter1, int 
 	this->interaction = std::make_pair(inter1, inter2);
 	this->col = col;
 
-	std::cout << interaction.first << std::endl;
-	//std::cout << interaction.second << std::endl;
 }
 
 Button::~Button()

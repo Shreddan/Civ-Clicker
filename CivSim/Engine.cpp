@@ -513,7 +513,8 @@ void Engine::populateButtonVec()
 	Main.emplace_back("Options", 420, 250, 300, 60, Options, 0, olc::DARK_GREY);
 	Main.emplace_back("Quit", 420, 350, 300, 60, -1, 0, olc::DARK_GREY);
 
-	//Game.emplace_back("+", 920, 140, 40, 30, std::make_pair(GameScreen, 0), olc::GREY);
+	//Game.emplace_back("-", 920, 140, 40, 30, GameScreen, 0, olc::GREY);
+	//Game.emplace_back("+", 970, 140, 40, 30, GameScreen, 0, olc::GREY);
 }
 
 bool Engine::OnUserCreate()
@@ -551,7 +552,6 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 		{
 			Main[i].DrawSelf(this);
 			Main[i].onHover(this);
-			
 		}
 		break;
 	}
@@ -582,7 +582,7 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 
 		//Add&Remove Worker Buttons
 		//FillRect();
-		FillRect(970, 140, 40, 30, olc::GREY);
+		//FillRect();
 
 		FillRect(920, 190, 40, 30, olc::GREY);
 		FillRect(970, 190, 40, 30, olc::GREY);
