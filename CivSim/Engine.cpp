@@ -11,23 +11,7 @@ Engine::~Engine()
 	OnUserDestroy();
 }
 
-std::string Engine::settleSize(std::string& type, int houseTotal, int farmTotal, int timberyardTotal, int quarryTotal, int mineTotal, int mintTotal)
-{
-	if (houseTotal >= 10 && farmTotal == 1)
-	{
-		type = "Town";
-	}
-	else if (houseTotal >= 20 && farmTotal == 3 && timberyardTotal == 1)
-	{
-		type = "City";
-	}
-	else if (houseTotal >= 50 && farmTotal == 8 && timberyardTotal == 3 && civ->Population >= 100)
-	{
-		type = "County";
-	}
 
-	return type;
-}
 
 void Engine::checkAchievements(int& alpha1, int& alpha2, int& alpha3, int& alpha4, std::string& achieve, float& alpha0, bool& anotherHouseComplete, bool& farmHandComplete, bool& timberrrComplete, bool& expansionComplete)
 {
@@ -81,7 +65,6 @@ void Engine::checkAchievements(int& alpha1, int& alpha2, int& alpha3, int& alpha
 
 std::tuple<float, float, float, float, float> Engine::gatherRates(float& woodGatherRate, float& foodGatherRate, float& stoneGatherRate, float& metalGatherRate, float& coinGatherRate, int woodGatherers, int foodGatherers, int stoneGatherers, int Miners, int Minters, float woodModifier, float foodModifier, float stoneModifier, float metalModifier, float coinModifier)
 {
-
 	woodGatherRate = woodGatherers * 1.6f + woodModifier;
 	foodGatherRate = foodGatherers * 2.2f + foodModifier;
 	stoneGatherRate = stoneGatherers * 1.3f + stoneModifier;

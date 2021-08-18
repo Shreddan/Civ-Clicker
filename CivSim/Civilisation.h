@@ -17,6 +17,8 @@ public:
 
 	int calculatePopCap(int& houseTotal, int& popCap);
 
+	std::string settleSize(std::string& type, int houseTotal, int farmTotal, int timberyardTotal, int quarryTotal, int mineTotal, int mintTotal);
+
 	Resources* res = nullptr;
 
 	std::string type = "Village";

@@ -2,7 +2,7 @@
 
 Civilisation::Civilisation()
 {
-	this->res = new Resource();
+	this->res = new Resources();
 }
 
 Civilisation::~Civilisation()
@@ -54,4 +54,22 @@ int Civilisation::calculatePopCap(int& houseTotal, int& popCap)
 	}
 
 	return popCap;
+}
+
+std::string Civilisation::settleSize(std::string& type, int houseTotal, int farmTotal, int timberyardTotal, int quarryTotal, int mineTotal, int mintTotal)
+{
+	if (houseTotal >= 10 && farmTotal == 1)
+	{
+		type = "Town";
+	}
+	else if (houseTotal >= 20 && farmTotal == 3 && timberyardTotal == 1)
+	{
+		type = "City";
+	}
+	else if (houseTotal >= 50 && farmTotal == 8 && timberyardTotal == 3 && Population >= 100)
+	{
+		type = "County";
+	}
+
+	return type;
 }
