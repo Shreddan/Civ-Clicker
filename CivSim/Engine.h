@@ -48,9 +48,6 @@ public:
 
 	void populateButtonVec();
 
-	void addEvent();
-	void handleEvent();
-
 	std::vector<Button> Main;
 	std::vector<Button> Game;
 	std::vector<Button> Help;
@@ -60,14 +57,15 @@ public:
 	std::vector<Button> Credit;
 	std::vector<Button> Option;
 
+	std::vector<Label> labels;
+
 protected:
 
 	bool OnUserCreate();
 
 	bool OnUserUpdate(float fElapsedTime);
 
-	std::deque<std::pair<int, int>> eventQ;
-
+	
 	//Options bools
 	bool backSelected = false;
 

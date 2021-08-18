@@ -509,21 +509,15 @@ void Engine::userInput()
 
 void Engine::populateButtonVec()
 {
-	Main.emplace_back("Start", 420, 150, 300, 60, GameScreen, 0, olc::DARK_GREY);
-	Main.emplace_back("Options", 420, 250, 300, 60, Options, 0, olc::DARK_GREY);
-	Main.emplace_back("Quit", 420, 350, 300, 60, -1, 0, olc::DARK_GREY);
+	Main.emplace_back("Start", 420, 150, 300, 60, GameScreen, 0, olc::DARK_GREY, olc::BLACK);
+	Main.emplace_back("Options", 420, 250, 300, 60, Options, 0, olc::DARK_GREY, olc::BLACK);
+	Main.emplace_back("Quit", 420, 350, 300, 60, -1, 0, olc::DARK_GREY, olc::BLACK);
 
-	Game.emplace_back("-", 920, 140, 40, 30, GameScreen, 0, olc::GREY);
-	Game.emplace_back("+", 970, 140, 40, 30, GameScreen, 0, olc::GREY);
+	Game.emplace_back("-", 920, 140, 40, 30, GameScreen, 0, olc::GREY, olc::RED);
+	Game.emplace_back("+", 970, 140, 40, 30, GameScreen, 0, olc::GREY, olc::GREEN);
 }
 
-void Engine::addEvent()
-{
-}
 
-void Engine::handleEvent()
-{
-}
 
 bool Engine::OnUserCreate()
 {
@@ -619,11 +613,11 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 		FillRect(970, 340, 40, 30, olc::GREY);
 
 		//Button Text
-		DrawString(935, 150, "-", olc::RED, 2U);
-		DrawString(985, 150, "+", olc::GREEN, 2U);
+		//DrawString(935, 150, "-", olc::RED, 2U);
+		//DrawString(985, 150, "+", olc::GREEN, 2U);
 
-		DrawString(935, 200, "-", olc::RED, 2U);
-		DrawString(985, 200, "+", olc::GREEN, 2U);
+		//DrawString(935, 200, "-", olc::RED, 2U);
+		//DrawString(985, 200, "+", olc::GREEN, 2U);
 
 		DrawString(935, 250, "-", olc::RED, 2U);
 		DrawString(985, 250, "+", olc::GREEN, 2U);
