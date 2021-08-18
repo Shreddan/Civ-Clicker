@@ -34,15 +34,9 @@ public:
 
 	std::string ftos(float f);
 
-	int calculateTotalGatherers(int& woodGatherers, int& foodGatherers, int& stoneGatherers, int& Miners, int& Minters);
-
 	int calculateIdle(int& Population, int& totalGatherers, int& IdlePop);
 
-	int calculatePopCap(int& houseTotal, int& popCap);
-
 	float foodConsump(float& Food, int Population);
-
-	std::tuple<float, float, float, float, float> calculateModifiers(int& farmTotal, int& timberyardTotal, int& quarryTotal, int& mineTotal, int& mintTotal);
 
 	void userInput();
 
@@ -77,9 +71,7 @@ protected:
 	bool creditSelected = false;
 
 	//Upgrade bools
-	bool upgrade1 = false;
-	bool upgrade2 = false;
-	bool upgrade3 = false;
+	
 
 
 	//Back bools
@@ -91,47 +83,17 @@ protected:
 
 	int	GameState = MainMenu;
 
-	std::string type = "Village";
-
-	//Population Variables
-	int Population = 5;
-	int popInc = 0;
+	Civilisation* civ = nullptr;
 
 	//Resources
-	float Wood = 0.0f;
-	int woodGatherers = 0;
-	float woodGatherRate = 0;
-	float Food = 0.0f;
-	int foodGatherers = 0;
-	float foodGatherRate = 0;
-	float Stone = 0.0f;
-	int stoneGatherers = 0;
-	float stoneGatherRate = 0;
-	float Metal = 0.0f;
-	int Miners = 0;
-	float metalGatherRate = 0;
-	float Coin = 0.0f;
-	int Minters = 0;
-	float coinGatherRate = 0.0f;
+	
 
 	//Buildings
-	int houseTotal = 1;
-	int farmTotal = 0;
-	int timberyardTotal = 0;
-	int quarryTotal = 0;
-	int mineTotal = 0;
-	int mintTotal = 0;
+	
 
 
-	//Modifiers
-	float foodModifier = farmTotal / 4;
-	float woodModifier = timberyardTotal / 4;
-	float stoneModifier = quarryTotal / 4;
-	float metalModifier = mineTotal / 4;
-	float coinModifier = mintTotal / 4;
-	int popCap = houseTotal * 5;
-	int totalGatherers = woodGatherers + foodGatherers + stoneGatherers;
-	int IdlePop = Population - totalGatherers;
+	
+	
 
 	//Tick Variables
 	int gameTick = 0;

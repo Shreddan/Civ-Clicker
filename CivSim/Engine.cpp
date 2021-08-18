@@ -7,6 +7,7 @@ Engine::Engine()
 
 Engine::~Engine()
 {
+	delete civ;
 	OnUserDestroy();
 }
 
@@ -20,7 +21,7 @@ std::string Engine::settleSize(std::string& type, int houseTotal, int farmTotal,
 	{
 		type = "City";
 	}
-	else if (houseTotal >= 50 && farmTotal == 8 && timberyardTotal == 3 && Population >= 100)
+	else if (houseTotal >= 50 && farmTotal == 8 && timberyardTotal == 3 && civ->Population >= 100)
 	{
 		type = "County";
 	}
@@ -32,7 +33,7 @@ void Engine::checkAchievements(int& alpha1, int& alpha2, int& alpha3, int& alpha
 {
 	if (!anotherHouseComplete)
 	{
-		if (houseTotal == 2)
+		if (civ->houseTotal == 2)
 		{
 			achieve = achieve1;
 			alpha1 = 255;
@@ -43,7 +44,7 @@ void Engine::checkAchievements(int& alpha1, int& alpha2, int& alpha3, int& alpha
 	}
 	else if (!farmHandComplete)
 	{
-		if (farmTotal == 1)
+		if (civ->farmTotal == 1)
 		{
 			achieve = achieve2;
 			alpha2 = 255;
@@ -54,7 +55,7 @@ void Engine::checkAchievements(int& alpha1, int& alpha2, int& alpha3, int& alpha
 	}
 	else if (!timberrrComplete)
 	{
-		if (timberyardTotal == 1)
+		if (civ->timberyardTotal == 1)
 		{
 			achieve = achieve3;
 			alpha3 = 255;
@@ -65,7 +66,7 @@ void Engine::checkAchievements(int& alpha1, int& alpha2, int& alpha3, int& alpha
 	}
 	else if (!expansionComplete)
 	{
-		if (type == "Town")
+		if (civ->type == "Town")
 		{
 			achieve = achieve4;
 			alpha4 = 255;
@@ -76,17 +77,6 @@ void Engine::checkAchievements(int& alpha1, int& alpha2, int& alpha3, int& alpha
 	}
 
 
-}
-
-std::tuple<float, float, float, float, float> Engine::resAccum(float& Wood, float& Food, float& Stone, float& Metal, float& Coin)
-{
-	Wood += woodGatherRate;
-	Food += foodGatherRate;
-	Stone += stoneGatherRate;
-	Metal += metalGatherRate;
-	Coin += coinGatherRate;
-
-	return std::make_tuple(Wood, Food, Stone, Metal, Coin);
 }
 
 std::tuple<float, float, float, float, float> Engine::gatherRates(float& woodGatherRate, float& foodGatherRate, float& stoneGatherRate, float& metalGatherRate, float& coinGatherRate, int woodGatherers, int foodGatherers, int stoneGatherers, int Miners, int Minters, float woodModifier, float foodModifier, float stoneModifier, float metalModifier, float coinModifier)
@@ -140,30 +130,11 @@ std::string Engine::ftos(float f)
 	return s;
 }
 
-int Engine::calculateTotalGatherers(int& woodGatherers, int& foodGatherers, int& stoneGatherers, int& Miners, int& Minters)
-{
-	totalGatherers = woodGatherers + foodGatherers + stoneGatherers + Miners + Minters;
-	return totalGatherers;
-}
 
 int Engine::calculateIdle(int& Population, int& totalGatherers, int& IdlePop)
 {
 	IdlePop = Population - totalGatherers;
 	return IdlePop;
-}
-
-int Engine::calculatePopCap(int& houseTotal, int& popCap)
-{
-	if (upgrade1)
-	{
-		popCap = houseTotal * 7;
-	}
-	else
-	{
-		popCap = houseTotal * 5;
-	}
-
-	return popCap;
 }
 
 float Engine::foodConsump(float& Food, int Population)
@@ -173,31 +144,6 @@ float Engine::foodConsump(float& Food, int Population)
 	return Food;
 }
 
-std::tuple<float, float, float, float, float> Engine::calculateModifiers(int& farmTotal, int& timberyardTotal, int& quarryTotal, int& mineTotal, int& mintTotal)
-{
-	if (upgrade2)
-	{
-		foodModifier = farmTotal / 2;
-	}
-	else
-	{
-		foodModifier = farmTotal / 3;
-	}
-
-	if (upgrade3)
-	{
-		woodModifier = timberyardTotal / 2;
-	}
-	else
-	{
-		woodModifier = timberyardTotal / 3;
-	}
-
-	stoneModifier = quarryTotal / 3;
-	metalModifier = mineTotal / 3;
-	coinModifier = mintTotal / 3;
-	return std::make_tuple(foodModifier, woodModifier, stoneModifier, metalModifier, coinModifier);
-}
 
 void Engine::userInput()
 {
@@ -516,14 +462,16 @@ void Engine::populateButtonVec()
 	Game.emplace_back("-", 920, 140, 40, 30, GameScreen, 0, olc::GREY, olc::RED);
 	Game.emplace_back("+", 970, 140, 40, 30, GameScreen, 0, olc::GREY, olc::GREEN);
 
-	labels.emplace_back(50, 100, type, olc::DARK_GREEN, 1, 3);
-	labels.emplace_back(350, 50, "Population = " + std::to_string(Population), olc::WHITE, 1, 3);
+	labels.emplace_back(50, 100, civ.type, olc::DARK_GREEN, 1, 3);
+	labels.emplace_back(350, 50, "Population = " + std::to_string(civ.Population), olc::WHITE, 1, 3);
+	labels.emplace_back(450, 80, "Idle = " + std::to_string(IdlePop), olc::WHITE, 1, 2);
 }
 
 
 
 bool Engine::OnUserCreate()
 {
+	civ = new Civilisation();
 	srand(time(NULL));
 	populateButtonVec();
 	return true;
@@ -533,9 +481,9 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 {
 	Clear(olc::VERY_DARK_GREY);
 
-	calculateModifiers(farmTotal, timberyardTotal, quarryTotal, mineTotal, mintTotal);
+	civ->calculateModifiers(civ->farmTotal, civ->timberyardTotal, civ->quarryTotal, civ->mineTotal, civ->mintTotal);
 
-	TickSystem(tick, Population, fElapsedTime, gameTick, woodGatherRate, foodGatherRate, stoneGatherRate, metalGatherRate, coinGatherRate, Wood, Food, Stone, Metal, Coin, woodGatherers, foodGatherers, stoneGatherers, Miners, Minters, woodModifier, foodModifier, stoneModifier, metalModifier, coinModifier);
+	TickSystem(tick, civ->Population, fElapsedTime, gameTick, woodGatherRate, foodGatherRate, stoneGatherRate, metalGatherRate, coinGatherRate, Wood, Food, Stone, Metal, Coin, civ->woodGatherers, civ->foodGatherers, civ->stoneGatherers, civ->Miners, civ->Minters, civ->woodModifier, civ->foodModifier, civ->stoneModifier, civ->metalModifier, civ->coinModifier);
 	calculateTotalGatherers(woodGatherers, foodGatherers, stoneGatherers, Miners, Minters);
 	calculateIdle(Population, totalGatherers, IdlePop);
 	calculatePopCap(houseTotal, popCap);
@@ -550,6 +498,7 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 		if (labels[i].ID == GameState)
 		{
 			labels[i].DrawSelf(this);
+			labels[i].updateLabel();
 		}
 	}
 
@@ -587,8 +536,7 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 
 
 
-		//Top
-		DrawString(450, 80, "Idle = " + std::to_string(IdlePop), olc::WHITE, 2U);
+		//Top;
 		DrawString(800, 50, "Cap = " + std::to_string(popCap), olc::WHITE, 2U);
 
 		//Resource - Left
