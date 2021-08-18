@@ -13,8 +13,8 @@ public:
 	~Button();
 
 	void DrawSelf(olc::PixelGameEngine* pge);
-	void onHover(olc::PixelGameEngine* pge);
-	std::pair<int, int> onInteract(olc::PixelGameEngine* pge);
+	bool onHover(olc::PixelGameEngine* pge);
+	bool onInteract(olc::PixelGameEngine* pge);
 
 	std::string label;
 	int originx;

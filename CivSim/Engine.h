@@ -48,6 +48,9 @@ public:
 
 	void populateButtonVec();
 
+	void addEvent();
+	void handleEvent();
+
 	std::vector<Button> Main;
 	std::vector<Button> Game;
 	std::vector<Button> Help;

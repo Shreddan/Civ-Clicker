@@ -513,8 +513,16 @@ void Engine::populateButtonVec()
 	Main.emplace_back("Options", 420, 250, 300, 60, Options, 0, olc::DARK_GREY);
 	Main.emplace_back("Quit", 420, 350, 300, 60, -1, 0, olc::DARK_GREY);
 
-	//Game.emplace_back("-", 920, 140, 40, 30, GameScreen, 0, olc::GREY);
-	//Game.emplace_back("+", 970, 140, 40, 30, GameScreen, 0, olc::GREY);
+	Game.emplace_back("-", 920, 140, 40, 30, GameScreen, 0, olc::GREY);
+	Game.emplace_back("+", 970, 140, 40, 30, GameScreen, 0, olc::GREY);
+}
+
+void Engine::addEvent()
+{
+}
+
+void Engine::handleEvent()
+{
 }
 
 bool Engine::OnUserCreate()
@@ -552,12 +560,26 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 		{
 			Main[i].DrawSelf(this);
 			Main[i].onHover(this);
+			if (Main[i].onInteract(this))
+			{
+				GameState = Main[i].interaction.first;
+			}
 		}
 		break;
 	}
 
 	case GameScreen:
 	{
+
+		for (size_t i = 0; i < Game.size(); i++)
+		{
+			Game[i].DrawSelf(this);
+			Game[i].onHover(this);
+			if (Game[i].onInteract(this))
+			{
+				GameState = Game[i].interaction.first;
+			}
+		}
 		//Top
 		DrawString(50, 100, type, olc::DARK_GREEN, 3U);
 		DrawString(350, 50, "Population = " + std::to_string(Population), olc::WHITE, 3U);

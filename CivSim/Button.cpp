@@ -22,28 +22,30 @@ void Button::DrawSelf(olc::PixelGameEngine* pge)
 	pge->DrawStringDecal(olc::vf2d(this->originx + 60, this->originy + 25), this->label, olc::BLACK, olc::vf2d(3.f, 3.f));
 }
 
-void Button::onHover(olc::PixelGameEngine* pge)
+bool Button::onHover(olc::PixelGameEngine* pge)
 {
 	if (pge->GetMouseX() > this->originx && pge->GetMouseX() < this->originx + this->w)
 	{
 		if (pge->GetMouseY() > this->originy && pge->GetMouseY() < this->originy + this->h)
 		{
 			pge->DrawRect(olc::vf2d(this->originx, this->originy), olc::vf2d(this->w, this->h), olc::YELLOW);
+			return true;
 		}
 	}
+	return false;
 }
 
-std::pair<int, int> Button::onInteract(olc::PixelGameEngine* pge)
+bool Button::onInteract(olc::PixelGameEngine* pge)
 {
-	if (pge->GetMouseX() > this->originx && pge->GetMouseX() < this->originx + this->w)
+	if (onHover(pge))
 	{
-		if (pge->GetMouseY() > this->originy && pge->GetMouseY() < this->originy + this->h)
+		if (pge->GetMouse(0).bPressed)
 		{
-			if (pge->GetMouse(0).bPressed)
-			{
-				return this->interaction;
-			}
+			return true;
 		}
-
+		else
+		{
+			return false;
+		}
 	}
 }
