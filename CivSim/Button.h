@@ -8,18 +8,16 @@
 
 struct Label
 {
-	Label(int x, int y, std::string lab, olc::Pixel col) { this->x = x, this->y = y, this->lab = lab, this->col = col; }
-	
-	void toggleShow() { this->isShown = !isShown; }
+	Label(int x, int y, std::string lab, olc::Pixel col, int id, float scale) { this->x = x, this->y = y, this->lab = lab, this->col = col, this->ID = id, this->scale = scale; }
 	void updateLabel(std::string in) { if (lab != in) { this->lab = in; } }
-
-private:
+	void DrawSelf(olc::PixelGameEngine* pge) { pge->DrawStringDecal(olc::vf2d(this->x, this->y), this->lab, this->col, olc::vf2d(this->scale, this->scale)); }
 
 	int x;
 	int y;
 	std::string lab;
 	olc::Pixel col;
-	bool isShown;
+	int ID;
+	float scale;
 };
 
 class Button

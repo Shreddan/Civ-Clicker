@@ -515,6 +515,9 @@ void Engine::populateButtonVec()
 
 	Game.emplace_back("-", 920, 140, 40, 30, GameScreen, 0, olc::GREY, olc::RED);
 	Game.emplace_back("+", 970, 140, 40, 30, GameScreen, 0, olc::GREY, olc::GREEN);
+
+	labels.emplace_back(50, 100, type, olc::DARK_GREEN, 1, 3);
+	labels.emplace_back(350, 50, "Population = " + std::to_string(Population), olc::WHITE, 1, 3);
 }
 
 
@@ -542,6 +545,13 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 	userInput();
 	checkAchievements(alpha1, alpha2, alpha3, alpha4, achieve, alpha0, anotherHouseComplete, farmHandComplete, timberrrComplete, expansionComplete);
 	
+	for (size_t i = 0; i < labels.size(); i++)
+	{
+		if (labels[i].ID == GameState)
+		{
+			labels[i].DrawSelf(this);
+		}
+	}
 
 	switch (GameState)
 	{
@@ -574,9 +584,10 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 				GameState = Game[i].interaction.first;
 			}
 		}
+
+
+
 		//Top
-		DrawString(50, 100, type, olc::DARK_GREEN, 3U);
-		DrawString(350, 50, "Population = " + std::to_string(Population), olc::WHITE, 3U);
 		DrawString(450, 80, "Idle = " + std::to_string(IdlePop), olc::WHITE, 2U);
 		DrawString(800, 50, "Cap = " + std::to_string(popCap), olc::WHITE, 2U);
 
