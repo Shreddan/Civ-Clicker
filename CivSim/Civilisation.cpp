@@ -85,3 +85,21 @@ float Civilisation::foodConsump()
 
 	return res->Food;
 }
+
+std::string Civilisation::getResAsString(int i)
+{
+	switch (i)
+	{
+	case 1:
+	{
+		return std::to_string(IdlePop);
+		break;
+	}
+	case 2:
+	{
+		return std::to_string(Population);
+		break;
+	}
+	}
+}
+

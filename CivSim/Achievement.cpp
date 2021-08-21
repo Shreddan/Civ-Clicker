@@ -9,53 +9,12 @@ Achievement::~Achievement()
 {
 }
 
-void Achievement::checkAchievements(int& houseTotal, std::string& achieve, float& alpha0, bool& anotherHouseComplete, bool& farmHandComplete, bool& timberrrComplete, bool& expansionComplete)
-{
-	if (!anotherHouseComplete)
+void Achievement::checkSelf(int& checkTot) 
+{	
+	if (checkTot == 2)
 	{
-		if (houseTotal == 2)
-		{
-			achieve = achieve1;
-			alpha1 = 255;
-			alpha0 = 1;
-			anotherHouseComplete = true;
-		}
-
+		this->isComplete = true;
 	}
-	else if (!farmHandComplete)
-	{
-		if (civ->farmTotal == 1)
-		{
-			achieve = achieve2;
-			alpha2 = 255;
-			alpha0 = 1;
-			farmHandComplete = true;
-		}
-
-	}
-	else if (!timberrrComplete)
-	{
-		if (civ->timberyardTotal == 1)
-		{
-			achieve = achieve3;
-			alpha3 = 255;
-			alpha0 = 1;
-			timberrrComplete = true;
-		}
-
-	}
-	else if (!expansionComplete)
-	{
-		if (civ->type == "Town")
-		{
-			achieve = achieve4;
-			alpha4 = 255;
-			alpha0 = 1;
-			expansionComplete = true;
-		}
-
-	}
-
 
 }
 

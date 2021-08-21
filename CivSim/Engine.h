@@ -14,7 +14,7 @@ class Engine : public olc::PixelGameEngine
 		HelpScreen,
 		BuildingScreen,
 		Upgrades,
-		Acheivements,
+		Achievements,
 		Credits
 	};
 

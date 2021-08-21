@@ -18,8 +18,8 @@ int Engine::TickSystem(float& tick, int Population, float& fElapsedTime, int& ga
 	tick += fElapsedTime;
 	if (tick >= 2.5f)
 	{
-		foodConsump(Food, Population);
-		gatherRates(woodGatherRate, foodGatherRate, stoneGatherRate, metalGatherRate, coinGatherRate, woodGatherers, foodGatherers, stoneGatherers, Miners, Minters, woodModifier, foodModifier, stoneModifier, metalModifier, coinModifier);
+		civ->foodConsump();
+		civ->res->gatherRates(woodGatherers, foodGatherers, stoneGatherers, Miners, Minters, woodModifier, foodModifier, stoneModifier, metalModifier, coinModifier);
 		civ->res->resAccum();
 		gameTick++;
 		tick = 0.f;
@@ -53,12 +53,6 @@ std::string Engine::ftos(float f)
 	return s;
 }
 
-
-
-
-
-
-
 void Engine::userInput()
 {
 	//Options Inputs
@@ -84,81 +78,81 @@ void Engine::userInput()
 	//Worker Buttons
 	if (GetMouseX() >= 920 && GetMouseX() <= 960 && GetMouseY() >= 140 && GetMouseY() <= 170 && GameState == GameScreen)
 	{
-		if (GetMouse(0).bPressed && woodGatherers > 0)
+		if (GetMouse(0).bPressed && civ->woodGatherers > 0)
 		{
-			woodGatherers--;
+			civ->woodGatherers--;
 		}
 
 	}
 	else if (GetMouseX() >= 970 && GetMouseX() <= 1010 && GetMouseY() >= 140 && GetMouseY() <= 170 && GameState == GameScreen)
 	{
-		if (GetMouse(0).bPressed && IdlePop > 0)
+		if (GetMouse(0).bPressed && civ->IdlePop > 0)
 		{
-			woodGatherers++;
+			civ->woodGatherers++;
 		}
 
 	}
 	else if (GetMouseX() >= 920 && GetMouseX() <= 960 && GetMouseY() >= 190 && GetMouseY() <= 220 && GameState == GameScreen)
 	{
-		if (GetMouse(0).bPressed && foodGatherers > 0)
+		if (GetMouse(0).bPressed && civ->foodGatherers > 0)
 		{
-			foodGatherers--;
+			civ->foodGatherers--;
 		}
 
 	}
 	else if (GetMouseX() >= 970 && GetMouseX() <= 1010 && GetMouseY() >= 190 && GetMouseY() <= 220 && GameState == GameScreen)
 	{
-		if (GetMouse(0).bPressed && IdlePop > 0)
+		if (GetMouse(0).bPressed && civ->IdlePop > 0)
 		{
-			foodGatherers++;
+			civ->foodGatherers++;
 		}
 
 	}
 	else if (GetMouseX() >= 920 && GetMouseX() <= 960 && GetMouseY() >= 240 && GetMouseY() <= 270 && GameState == GameScreen)
 	{
-		if (GetMouse(0).bPressed && stoneGatherers > 0)
+		if (GetMouse(0).bPressed && civ->stoneGatherers > 0)
 		{
-			stoneGatherers--;
+			civ->stoneGatherers--;
 		}
 
 	}
 	else if (GetMouseX() >= 970 && GetMouseX() <= 1010 && GetMouseY() >= 240 && GetMouseY() <= 270 && GameState == GameScreen)
 	{
-		if (GetMouse(0).bPressed && IdlePop > 0)
+		if (GetMouse(0).bPressed && civ->IdlePop > 0)
 		{
-			stoneGatherers++;
+			civ->stoneGatherers++;
 		}
 
 	}
 	else if (GetMouseX() >= 920 && GetMouseX() <= 960 && GetMouseY() >= 290 && GetMouseY() <= 320 && GameState == GameScreen)
 	{
-		if (GetMouse(0).bPressed && Miners > 0)
+		if (GetMouse(0).bPressed && civ->Miners > 0)
 		{
-			Miners--;
+			civ->Miners--;
 		}
 
 	}
 	else if (GetMouseX() >= 970 && GetMouseX() <= 1010 && GetMouseY() >= 290 && GetMouseY() <= 320 && GameState == GameScreen)
 	{
-		if (GetMouse(0).bPressed && IdlePop > 0)
+		if (GetMouse(0).bPressed && civ->IdlePop > 0)
 		{
-			Miners++;
+			civ->Miners++;
 		}
 
 	}
 	else if (GetMouseX() >= 920 && GetMouseX() <= 960 && GetMouseY() >= 340 && GetMouseY() <= 370 && GameState == GameScreen)
 	{
-		if (GetMouse(0).bPressed && Minters > 0)
+		if (GetMouse(0).bPressed && civ->Minters > 0)
 		{
-			Minters--;
+			civ->Minters--;
 		}
 
 	}
 	else if (GetMouseX() >= 970 && GetMouseX() <= 1010 && GetMouseY() >= 340 && GetMouseY() <= 370 && GameState == GameScreen)
 	{
-		if (GetMouse(0).bPressed && IdlePop > 0)
+		if (GetMouse(0).bPressed && civ->IdlePop > 0)
 		{
-			Minters++;
+			civ->Minters++;
 		}
 
 	}
@@ -194,7 +188,7 @@ void Engine::userInput()
 		achieveSelected = true;
 		if (GetMouse(0).bPressed && achieveSelected)
 		{
-			GameState = Acheivements;
+			GameState = Achievements;
 		}
 	}
 	else if (GetMouseX() >= 890 && GetMouseX() <= 1040 && GetMouseY() >= 550 && GetMouseY() <= 600 && GameState == GameScreen)
@@ -233,27 +227,27 @@ void Engine::userInput()
 
 	if (GetMouseX() >= 400 && GetMouseX() <= 450 && GetMouseY() >= 90 && GetMouseY() <= 140 && GameState == Upgrades)
 	{
-		if (GetMouse(0).bPressed && !upgrade1 && Coin > 100)
+		if (GetMouse(0).bPressed && !civ->upgrade1 && civ->res->Coin > 100)
 		{
-			Coin -= 100;
-			upgrade1 = true;
+			civ->res->Coin -= 100;
+			civ->upgrade1 = true;
 		}
 	}
 	else if (GetMouseX() >= 400 && GetMouseX() <= 450 && GetMouseY() >= 160 && GetMouseY() <= 210 && GameState == Upgrades)
 	{
-		if (GetMouse(0).bPressed && !upgrade2 && Coin > 200)
+		if (GetMouse(0).bPressed && !civ->upgrade2 && civ->res->Coin > 200)
 		{
-			Coin -= 200;
-			upgrade2 = true;
+			civ->res->Coin -= 200;
+			civ->upgrade2 = true;
 		}
 
 	}
 	else if (GetMouseX() >= 400 && GetMouseX() <= 450 && GetMouseY() >= 230 && GetMouseY() <= 280 && GameState == Upgrades)
 	{
-		if (GetMouse(0).bPressed && !upgrade3 && Coin > 300)
+		if (GetMouse(0).bPressed && !civ->upgrade3 && civ->res->Coin > 300)
 		{
-			Coin -= 300;
-			upgrade3 = true;
+			civ->res->Coin -= 300;
+			civ->upgrade3 = true;
 		}
 	}
 
@@ -261,52 +255,52 @@ void Engine::userInput()
 	//BuildingScreen Inputs
 	if (GetMouseX() >= 550 && GetMouseX() <= 590 && GetMouseY() >= 100 && GetMouseY() <= 130 && GameState == BuildingScreen)
 	{
-		if (GetMouse(0).bPressed && Wood >= 10)
+		if (GetMouse(0).bPressed && civ->res->Wood >= 10)
 		{
-			Wood -= 10;
-			houseTotal++;
+			civ->res->Wood -= 10;
+			civ->houseTotal++;
 		}
 	}
 	else if (GetMouseX() >= 500 && GetMouseX() <= 610 && GetMouseY() >= 150 && GetMouseY() <= 180 && GameState == BuildingScreen)
 	{
-		if (GetMouse(0).bPressed && Wood >= 15)
+		if (GetMouse(0).bPressed && civ->res->Wood >= 15)
 		{
-			Wood -= 15;
-			farmTotal++;
+			civ->res->Wood -= 15;
+			civ->farmTotal++;
 		}
 	}
 	else if (GetMouseX() >= 500 && GetMouseX() <= 610 && GetMouseY() >= 200 && GetMouseY() <= 230 && GameState == BuildingScreen)
 	{
-		if (GetMouse(0).bPressed && Metal >= 10)
+		if (GetMouse(0).bPressed && civ->res->Metal >= 10)
 		{
-			Metal -= 10;
-			timberyardTotal++;
+			civ->res->Metal -= 10;
+			civ->timberyardTotal++;
 		}
 	}
 	else if (GetMouseX() >= 500 && GetMouseX() <= 610 && GetMouseY() >= 250 && GetMouseY() <= 280 && GameState == BuildingScreen)
 	{
-		if (GetMouse(0).bPressed && Metal >= 10 && Wood >= 5)
+		if (GetMouse(0).bPressed && civ->res->Metal >= 10 && civ->res->Wood >= 5)
 		{
-			Metal -= 10;
-			Wood -= 5;
-			quarryTotal++;
+			civ->res->Metal -= 10;
+			civ->res->Wood -= 5;
+			civ->quarryTotal++;
 		}
 	}
 	else if (GetMouseX() >= 500 && GetMouseX() <= 610 && GetMouseY() >= 300 && GetMouseY() <= 330 && GameState == BuildingScreen)
 	{
-		if (GetMouse(0).bPressed && Metal >= 25 && Wood >= 15)
+		if (GetMouse(0).bPressed && civ->res->Metal >= 25 && civ->res->Wood >= 15)
 		{
-			Metal -= 25;
-			Wood -= 15;
-			mineTotal++;
+			civ->res->Metal -= 25;
+			civ->res->Wood -= 15;
+			civ->mineTotal++;
 		}
 	}
 	else if (GetMouseX() >= 500 && GetMouseX() <= 610 && GetMouseY() >= 350 && GetMouseY() <= 380 && GameState == BuildingScreen)
 	{
-		if (GetMouse(0).bPressed && Metal >= 50)
+		if (GetMouse(0).bPressed && civ->res->Metal >= 50)
 		{
-			Metal -= 50;
-			mintTotal++;
+			civ->res->Metal -= 50;
+			civ->mintTotal++;
 		}
 	}
 	else if (GetMouseX() >= 500 && GetMouseX() <= 610 && GetMouseY() >= 550 && GetMouseY() <= 600 && GameState == BuildingScreen)
@@ -337,7 +331,7 @@ void Engine::userInput()
 	}
 
 
-	if (GetMouseX() >= 500 && GetMouseX() <= 610 && GetMouseY() >= 550 && GetMouseY() <= 600 && GameState == Acheivements)
+	if (GetMouseX() >= 500 && GetMouseX() <= 610 && GetMouseY() >= 550 && GetMouseY() <= 600 && GameState == Achievements)
 	{
 		aBackselected = true;
 		if (GetMouse(0).bPressed && aBackselected)
@@ -376,16 +370,16 @@ void Engine::populateButtonVec()
 	Game.emplace_back("-", 920, 140, 40, 30, GameScreen, 0, olc::GREY, olc::RED);
 	Game.emplace_back("+", 970, 140, 40, 30, GameScreen, 0, olc::GREY, olc::GREEN);
 
-	labels.emplace_back(50, 100, civ->type, olc::DARK_GREEN, 1, 3);
-	labels.emplace_back(350, 50, "Population = " + std::to_string(civ->Population), olc::WHITE, 1, 3);
-	labels.emplace_back(450, 80, "Idle = " + std::to_string(civ->IdlePop), olc::WHITE, 1, 2);
+	labels.emplace_back(50, 100, civ->type, olc::DARK_GREEN, 1, 0, 3);
+	labels.emplace_back(350, 50, "Population = ", olc::WHITE, 1, 2, 3);
+	labels.emplace_back(450, 80, "Idle = ", olc::WHITE, 1, 1, 2);
 }
 
 
 
 bool Engine::OnUserCreate()
 {
-	core->Create(877611818154065970, DiscordCreateFlags_Default, &core);
+	//core->Create(877611818154065970, DiscordCreateFlags_Default, &core);
 	civ = new Civilisation();
 	srand(time(NULL));
 	populateButtonVec();
@@ -406,14 +400,13 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 	civ->settleSize();
 
 	userInput();
-	ach->checkAchievements(alpha1, alpha2, alpha3, alpha4, achieve, alpha0, anotherHouseComplete, farmHandComplete, timberrrComplete, expansionComplete);
 	
 	for (size_t i = 0; i < labels.size(); i++)
 	{
 		if (labels[i].ID == GameState)
 		{
 			labels[i].DrawSelf(this);
-			labels[i].updateLabel();
+			labels[i].updateLabel(civ);
 		}
 	}
 
@@ -452,23 +445,23 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 
 
 		//Top;
-		DrawString(800, 50, "Cap = " + std::to_string(popCap), olc::WHITE, 2U);
+		DrawString(800, 50, "Cap = " + std::to_string(civ->popCap), olc::WHITE, 2U);
 
 		//Resource - Left
-		DrawString(120, 175, "Wood = " + ftos(Wood), olc::WHITE, 2U);
-		DrawString(120, 200, "Food = " + ftos(Food), olc::WHITE, 2U);
-		DrawString(120, 225, "Stone = " + ftos(Stone), olc::WHITE, 2U);
-		DrawString(120, 250, "Metal = " + ftos(Metal), olc::WHITE, 2U);
-		DrawString(120, 275, "Coin = " + ftos(Coin), olc::WHITE, 2U);
+		DrawString(120, 175, "Wood = " + ftos(civ->res->Wood), olc::WHITE, 2U);
+		DrawString(120, 200, "Food = " + ftos(civ->res->Food), olc::WHITE, 2U);
+		DrawString(120, 225, "Stone = " + ftos(civ->res->Stone), olc::WHITE, 2U);
+		DrawString(120, 250, "Metal = " + ftos(civ->res->Metal), olc::WHITE, 2U);
+		DrawString(120, 275, "Coin = " + ftos(civ->res->Coin), olc::WHITE, 2U);
 
 
 		//Workers - Right
-		DrawString(580, 150, "Wood Gatherers = " + std::to_string(woodGatherers), olc::WHITE, 2U);
-		DrawString(580, 200, "Food Gatherers = " + std::to_string(foodGatherers), olc::WHITE, 2U);
-		DrawString(580, 250, "Stone Gatherers = " + std::to_string(stoneGatherers), olc::WHITE, 2U);
-		DrawString(580, 300, "Miners = " + std::to_string(Miners), olc::WHITE, 2U);
-		DrawString(580, 350, "Minters = " + std::to_string(Minters), olc::WHITE, 2U);
-		DrawString(580, 400, "Total Gatherers = " + std::to_string(totalGatherers), olc::WHITE, 2U);
+		DrawString(580, 150, "Wood Gatherers = " + std::to_string(civ->woodGatherers), olc::WHITE, 2U);
+		DrawString(580, 200, "Food Gatherers = " + std::to_string(civ->foodGatherers), olc::WHITE, 2U);
+		DrawString(580, 250, "Stone Gatherers = " + std::to_string(civ->stoneGatherers), olc::WHITE, 2U);
+		DrawString(580, 300, "Miners = " + std::to_string(civ->Miners), olc::WHITE, 2U);
+		DrawString(580, 350, "Minters = " + std::to_string(civ->Minters), olc::WHITE, 2U);
+		DrawString(580, 400, "Total Gatherers = " + std::to_string(civ->totalGatherers), olc::WHITE, 2U);
 
 		//Add&Remove Worker Buttons
 		//FillRect();
@@ -580,12 +573,12 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 	{
 
 		//Buildings
-		DrawString(120, 100, "House Total = " + std::to_string(houseTotal), olc::WHITE, 2U);
-		DrawString(120, 150, "Farm Total = " + std::to_string(farmTotal), olc::WHITE, 2U);
-		DrawString(120, 200, "TimberYard Total = " + std::to_string(timberyardTotal), olc::WHITE, 2U);
-		DrawString(120, 250, "Quarry Total = " + std::to_string(quarryTotal), olc::WHITE, 2U);
-		DrawString(120, 300, "Mine Total = " + std::to_string(mineTotal), olc::WHITE, 2U);
-		DrawString(120, 350, "Mint Total = " + std::to_string(mintTotal), olc::WHITE, 2U);
+		DrawString(120, 100, "House Total = " + std::to_string(civ->houseTotal), olc::WHITE, 2U);
+		DrawString(120, 150, "Farm Total = " + std::to_string(civ->farmTotal), olc::WHITE, 2U);
+		DrawString(120, 200, "TimberYard Total = " + std::to_string(civ->timberyardTotal), olc::WHITE, 2U);
+		DrawString(120, 250, "Quarry Total = " + std::to_string(civ->quarryTotal), olc::WHITE, 2U);
+		DrawString(120, 300, "Mine Total = " + std::to_string(civ->mineTotal), olc::WHITE, 2U);
+		DrawString(120, 350, "Mint Total = " + std::to_string(civ->mintTotal), olc::WHITE, 2U);
 
 		//Building Buttons
 		FillRect(550, 100, 40, 30, olc::DARK_GREY);
@@ -634,7 +627,7 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 		DrawString(120, 170, "Crop Rotation", olc::WHITE, 2U);
 		DrawString(120, 240, "Better Hatchets", olc::WHITE, 2U);
 
-		if (upgrade1)
+		if (civ->upgrade1)
 		{
 			FillRect(400, 90, 40, 40, olc::GREEN);
 		}
@@ -643,7 +636,7 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 			FillRect(400, 90, 40, 40, olc::RED);
 		}
 
-		if (upgrade2)
+		if (civ->upgrade2)
 		{
 			FillRect(400, 160, 40, 40, olc::GREEN);
 		}
@@ -652,7 +645,7 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 			FillRect(400, 160, 40, 40, olc::RED);
 		}
 
-		if (upgrade3)
+		if (civ->upgrade3)
 		{
 			FillRect(400, 230, 40, 40, olc::GREEN);
 		}
@@ -677,7 +670,7 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 
 		break;
 	}
-	case Acheivements:
+	case Achievements:
 	{
 		DrawString(320, 30, "ACHIEVEMENTS", olc::GREEN, 4U);
 		DrawLine(320, 60, 695, 60, olc::GREEN);
@@ -742,19 +735,19 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 		alpha0 -= fElapsedTime / timeToFade;
 	}
 
-	if (IdlePop <= 0)
+	if (civ->IdlePop <= 0)
 	{
-		IdlePop = 0;
+		civ->IdlePop = 0;
 	}
 
-	if (Food < 0)
+	if (civ->res->Food < 0)
 	{
-		Food = 0;
+		civ->res->Food = 0;
 	}
 
-	if (Population > popCap)
+	if (civ->Population > civ->popCap)
 	{
-		Population = popCap;
+		civ->Population = civ->popCap;
 	}
 
 	return true;

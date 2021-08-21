@@ -8,11 +8,14 @@ public:
 	Achievement();
 	~Achievement();
 
-	void checkSelf(std::string& achieve, float& alpha0, bool& anotherHouseComplete, bool& farmHandComplete, bool& timberrrComplete, bool& expansionComplete);
+	void checkSelf(int& checkTot);
 	void DrawSelf(olc::PixelGameEngine* pge);
+	void DrawNotif(olc::PixelGameEngine* pge);
 
 	std::string achName;
 	int alpha;
+	int State;
 	bool isShown;
+	bool isComplete;
 };
 

@@ -23,6 +23,10 @@ public:
 
 	float foodConsump();
 
+	std::string getResAsString(int i);
+
+	
+
 	Resources* res = nullptr;
 
 	std::string type = "Village";
