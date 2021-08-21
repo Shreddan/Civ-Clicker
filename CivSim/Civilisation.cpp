@@ -100,6 +100,11 @@ std::string Civilisation::getResAsString(int i)
 		return std::to_string(Population);
 		break;
 	}
+	case 3: 
+	{
+		return std::to_string(popCap);
+		break;
+	}
 	}
 }
 

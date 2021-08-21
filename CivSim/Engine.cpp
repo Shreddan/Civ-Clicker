@@ -45,118 +45,65 @@ int Engine::PopTickSystem(int& gameTick, int& PopTick, int& Population, int& pop
 	return PopTick;
 }
 
-std::string Engine::ftos(float f)
+void Engine::userInput(int& ID)
 {
-	std::stringstream stream;
-	stream << std::fixed << std::setprecision(2) << f;
-	std::string s = stream.str();
-	return s;
-}
-
-void Engine::userInput()
-{
-	//Options Inputs
-
-	if (GetMouseX() >= 420 && GetMouseX() <= 720 && GetMouseY() >= 350 && GetMouseY() <= 410 && GameState == Options)
+	switch (ID)
 	{
-		backSelected = true;
-		if (GetMouse(0).bPressed && backSelected == true)
-		{
-			GameState = MainMenu;
-			backSelected = false;
-		}
-
-	}
-	else
+	case 0:
 	{
-		backSelected = false;
+		break;
 	}
-
-
-	//Gamescreen Buttons
-
-	//Worker Buttons
-	if (GetMouseX() >= 920 && GetMouseX() <= 960 && GetMouseY() >= 140 && GetMouseY() <= 170 && GameState == GameScreen)
+	case 1:
 	{
-		if (GetMouse(0).bPressed && civ->woodGatherers > 0)
-		{
-			civ->woodGatherers--;
-		}
-
+		civ->woodGatherers--;
+		break;
 	}
-	else if (GetMouseX() >= 970 && GetMouseX() <= 1010 && GetMouseY() >= 140 && GetMouseY() <= 170 && GameState == GameScreen)
+	case 2:
 	{
-		if (GetMouse(0).bPressed && civ->IdlePop > 0)
-		{
-			civ->woodGatherers++;
-		}
-
+		civ->woodGatherers++;
+		break;
 	}
-	else if (GetMouseX() >= 920 && GetMouseX() <= 960 && GetMouseY() >= 190 && GetMouseY() <= 220 && GameState == GameScreen)
+	case 3:
 	{
-		if (GetMouse(0).bPressed && civ->foodGatherers > 0)
-		{
-			civ->foodGatherers--;
-		}
-
+		civ->foodGatherers--;
+		break;
 	}
-	else if (GetMouseX() >= 970 && GetMouseX() <= 1010 && GetMouseY() >= 190 && GetMouseY() <= 220 && GameState == GameScreen)
+	case 4:
 	{
-		if (GetMouse(0).bPressed && civ->IdlePop > 0)
-		{
-			civ->foodGatherers++;
-		}
-
+		civ->foodGatherers++;
+		break;
 	}
-	else if (GetMouseX() >= 920 && GetMouseX() <= 960 && GetMouseY() >= 240 && GetMouseY() <= 270 && GameState == GameScreen)
+	case 5:
 	{
-		if (GetMouse(0).bPressed && civ->stoneGatherers > 0)
-		{
-			civ->stoneGatherers--;
-		}
-
+		civ->stoneGatherers--;
+		break;
 	}
-	else if (GetMouseX() >= 970 && GetMouseX() <= 1010 && GetMouseY() >= 240 && GetMouseY() <= 270 && GameState == GameScreen)
+	case 6:
 	{
-		if (GetMouse(0).bPressed && civ->IdlePop > 0)
-		{
-			civ->stoneGatherers++;
-		}
-
+		civ->stoneGatherers++;
+		break;
 	}
-	else if (GetMouseX() >= 920 && GetMouseX() <= 960 && GetMouseY() >= 290 && GetMouseY() <= 320 && GameState == GameScreen)
+	case 7:
 	{
-		if (GetMouse(0).bPressed && civ->Miners > 0)
-		{
-			civ->Miners--;
-		}
-
+		civ->Miners--;
+		break;
 	}
-	else if (GetMouseX() >= 970 && GetMouseX() <= 1010 && GetMouseY() >= 290 && GetMouseY() <= 320 && GameState == GameScreen)
+	case 8:
 	{
-		if (GetMouse(0).bPressed && civ->IdlePop > 0)
-		{
-			civ->Miners++;
-		}
-
+		civ->Miners++;
+		break;
 	}
-	else if (GetMouseX() >= 920 && GetMouseX() <= 960 && GetMouseY() >= 340 && GetMouseY() <= 370 && GameState == GameScreen)
+	case 9:
 	{
-		if (GetMouse(0).bPressed && civ->Minters > 0)
-		{
-			civ->Minters--;
-		}
-
+		civ->Minters--;
+		break;
 	}
-	else if (GetMouseX() >= 970 && GetMouseX() <= 1010 && GetMouseY() >= 340 && GetMouseY() <= 370 && GameState == GameScreen)
+	case 10:
 	{
-		if (GetMouse(0).bPressed && civ->IdlePop > 0)
-		{
-			civ->Minters++;
-		}
-
+		civ->Minters++;
+		break;
 	}
-
+	}
 	//Navigation Inputs
 
 	if (GetMouseX() >= 30 && GetMouseX() <= 130 && GetMouseY() >= 550 && GetMouseY() <= 600 && GameState == GameScreen)
@@ -363,16 +310,39 @@ void Engine::userInput()
 
 void Engine::populateButtonVec()
 {
-	Main.emplace_back("Start", 420, 150, 300, 60, GameScreen, 0, olc::DARK_GREY, olc::BLACK);
-	Main.emplace_back("Options", 420, 250, 300, 60, Options, 0, olc::DARK_GREY, olc::BLACK);
-	Main.emplace_back("Quit", 420, 350, 300, 60, -1, 0, olc::DARK_GREY, olc::BLACK);
+	Main.emplace_back("Start", 420, 150, 300, 60, GameScreen, 0, olc::DARK_GREY, 3);
+	Main.emplace_back("Options", 420, 250, 300, 60, Options, 0, olc::DARK_GREY, 3);
+	Main.emplace_back("Quit", 420, 350, 300, 60, -1, 0, olc::DARK_GREY, 3);
 
-	Game.emplace_back("-", 920, 140, 40, 30, GameScreen, 0, olc::GREY, olc::RED);
-	Game.emplace_back("+", 970, 140, 40, 30, GameScreen, 0, olc::GREY, olc::GREEN);
+	//Nav Buttons
+	Game.emplace_back("Help", 30, 550, 100, 50, HelpScreen, 0, olc::DARK_GREY, 2, olc::WHITE);
+	Game.emplace_back("Buildings", 180, 550, 180, 50, BuildingScreen, 0, olc::DARK_GREY, 2, olc::WHITE);
+	Game.emplace_back("Upgrades", 410, 550, 160, 50, Upgrades, 0, olc::DARK_GREY, 2, olc::WHITE);
+	Game.emplace_back("Achievements", 620, 550, 230, 50, Achievements, 0, olc::DARK_GREY, 2, olc::WHITE);
+	Game.emplace_back("Credits", 890, 550, 150, 50, Credits, 0, olc::DARK_GREY, 2, olc::WHITE);
+
+
+	//Worker Buttons
+	Game.emplace_back("-", 920, 140, 40, 30, GameScreen, 1, olc::GREY, 3, olc::RED);
+	Game.emplace_back("+", 970, 140, 40, 30, GameScreen, 2, olc::GREY, 3, olc::GREEN);
+	Game.emplace_back("-", 920, 190, 40, 30, GameScreen, 3, olc::GREY, 3, olc::RED);
+	Game.emplace_back("+", 970, 190, 40, 30, GameScreen, 4, olc::GREY, 3, olc::GREEN);
+	Game.emplace_back("-", 920, 240, 40, 30, GameScreen, 5, olc::GREY, 3, olc::RED);
+	Game.emplace_back("+", 970, 240, 40, 30, GameScreen, 6, olc::GREY, 3, olc::GREEN);
+	Game.emplace_back("-", 920, 290, 40, 30, GameScreen, 7, olc::GREY, 3, olc::RED);
+	Game.emplace_back("+", 970, 290, 40, 30, GameScreen, 8, olc::GREY, 3, olc::GREEN);
+	Game.emplace_back("-", 920, 340, 40, 30, GameScreen, 9, olc::GREY, 3, olc::RED);
+	Game.emplace_back("+", 970, 340, 40, 30, GameScreen, 10, olc::GREY, 3, olc::GREEN);
 
 	labels.emplace_back(50, 100, civ->type, olc::DARK_GREEN, 1, 0, 3);
 	labels.emplace_back(350, 50, "Population = ", olc::WHITE, 1, 2, 3);
 	labels.emplace_back(450, 80, "Idle = ", olc::WHITE, 1, 1, 2);
+	labels.emplace_back(800, 50, "Cap = ", olc::WHITE, 1, 3, 2);
+	labels.emplace_back(120, 175, "Wood = ", olc::WHITE, 1, 4, 2);
+	labels.emplace_back(120, 200, "Food = ", olc::WHITE, 1, 5, 2);
+	labels.emplace_back(120, 225, "Stone = ", olc::WHITE, 1, 6, 2);
+	labels.emplace_back(120, 250, "Metal = ", olc::WHITE, 1, 7, 2);
+	labels.emplace_back(120, 275, "Coin = ", olc::WHITE, 1, 8, 2);
 }
 
 
@@ -398,8 +368,6 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 	civ->calculatePopCap();
 	PopTickSystem(gameTick, PopTick, civ->Population, civ->popInc, civ->res->Food, civ->IdlePop, civ->popCap);
 	civ->settleSize();
-
-	userInput();
 	
 	for (size_t i = 0; i < labels.size(); i++)
 	{
@@ -439,21 +407,9 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 			if (Game[i].onInteract(this))
 			{
 				GameState = Game[i].interaction.first;
+				userInput(Game[i].interaction.second);
 			}
 		}
-
-
-
-		//Top;
-		DrawString(800, 50, "Cap = " + std::to_string(civ->popCap), olc::WHITE, 2U);
-
-		//Resource - Left
-		DrawString(120, 175, "Wood = " + ftos(civ->res->Wood), olc::WHITE, 2U);
-		DrawString(120, 200, "Food = " + ftos(civ->res->Food), olc::WHITE, 2U);
-		DrawString(120, 225, "Stone = " + ftos(civ->res->Stone), olc::WHITE, 2U);
-		DrawString(120, 250, "Metal = " + ftos(civ->res->Metal), olc::WHITE, 2U);
-		DrawString(120, 275, "Coin = " + ftos(civ->res->Coin), olc::WHITE, 2U);
-
 
 		//Workers - Right
 		DrawString(580, 150, "Wood Gatherers = " + std::to_string(civ->woodGatherers), olc::WHITE, 2U);
@@ -463,89 +419,29 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 		DrawString(580, 350, "Minters = " + std::to_string(civ->Minters), olc::WHITE, 2U);
 		DrawString(580, 400, "Total Gatherers = " + std::to_string(civ->totalGatherers), olc::WHITE, 2U);
 
-		//Add&Remove Worker Buttons
-		//FillRect();
-		//FillRect();
-
-		FillRect(920, 190, 40, 30, olc::GREY);
-		FillRect(970, 190, 40, 30, olc::GREY);
-
-		FillRect(920, 240, 40, 30, olc::GREY);
-		FillRect(970, 240, 40, 30, olc::GREY);
-
-		FillRect(920, 290, 40, 30, olc::GREY);
-		FillRect(970, 290, 40, 30, olc::GREY);
-
-		FillRect(920, 340, 40, 30, olc::GREY);
-		FillRect(970, 340, 40, 30, olc::GREY);
-
 		//Button Text
-		//DrawString(935, 150, "-", olc::RED, 2U);
-		//DrawString(985, 150, "+", olc::GREEN, 2U);
+		
 
-		//DrawString(935, 200, "-", olc::RED, 2U);
-		//DrawString(985, 200, "+", olc::GREEN, 2U);
-
-		DrawString(935, 250, "-", olc::RED, 2U);
+		/*DrawString(935, 250, "-", olc::RED, 2U);
 		DrawString(985, 250, "+", olc::GREEN, 2U);
 
 		DrawString(935, 300, "-", olc::RED, 2U);
 		DrawString(985, 300, "+", olc::GREEN, 2U);
 
 		DrawString(935, 350, "-", olc::RED, 2U);
-		DrawString(985, 350, "+", olc::GREEN, 2U);
-
+		DrawString(985, 350, "+", olc::GREEN, 2U);*/
 
 		//GameTime - Bottom
-		DrawString(150, 500, "Tick = " + ftos(tick), olc::WHITE, 2U);
-		DrawString(600, 500, "PopTick = " + std::to_string(PopTick), olc::WHITE, 2U);
-
-		//Buttons
-		FillRect(30, 550, 100, 50, olc::DARK_GREY);
-		FillRect(180, 550, 180, 50, olc::DARK_GREY);
-		FillRect(410, 550, 160, 50, olc::DARK_GREY);
-		FillRect(620, 550, 230, 50, olc::DARK_GREY);
-		FillRect(890, 550, 150, 50, olc::DARK_GREY);
-
-
-		DrawString(50, 565, "Help", olc::WHITE, 2U);
-		DrawString(200, 565, "Buildings", olc::WHITE, 2U);
-		DrawString(430, 565, "Upgrades", olc::WHITE, 2U);
-		DrawString(640, 565, "Achievements", olc::WHITE, 2U);
-		DrawString(910, 565, "Credits", olc::WHITE, 2U);
-
+		//DrawString(150, 500, "Tick = " + ftos(tick), olc::WHITE, 2U);
+		//DrawString(600, 500, "PopTick = " + std::to_string(PopTick), olc::WHITE, 2U);
 
 		//Achievement notif
-		SetPixelMode(olc::Pixel::ALPHA);
+		/*SetPixelMode(olc::Pixel::ALPHA);
 		DrawString(120, 400, achieve, olc::Pixel(0, 255, 0, uint8_t(alpha0 * 255)), 3U);
-		SetPixelMode(olc::Pixel::NORMAL);
-
-		if (helpSelected)
-		{
-			DrawRect(30, 550, 100, 50, olc::YELLOW);
-		}
-		else if (buildSelected)
-		{
-			DrawRect(180, 550, 180, 50, olc::YELLOW);
-		}
-		else if (upgrSelected)
-		{
-			DrawRect(410, 550, 160, 50, olc::YELLOW);
-		}
-		else if (achieveSelected)
-		{
-			DrawRect(620, 550, 230, 50, olc::YELLOW);
-		}
-		else if (creditSelected)
-		{
-			DrawRect(890, 550, 150, 50, olc::YELLOW);
-		}
-
+		SetPixelMode(olc::Pixel::NORMAL);*/
 
 		break;
 	}
-
-
 
 	case HelpScreen:
 	{
@@ -603,9 +499,9 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 		DrawString(610, 359, "(50 Metal)", olc::WHITE, 2U);
 
 		//Achievement notif
-		SetPixelMode(olc::Pixel::ALPHA);
+		/*SetPixelMode(olc::Pixel::ALPHA);
 		DrawString(120, 400, achieve, olc::Pixel(0, 255, 0, uint8_t(alpha0 * 255)), 3U);
-		SetPixelMode(olc::Pixel::NORMAL);
+		SetPixelMode(olc::Pixel::NORMAL);*/
 
 
 		FillRect(500, 550, 110, 50, olc::DARK_GREY);

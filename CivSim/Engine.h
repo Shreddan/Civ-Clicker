@@ -26,9 +26,9 @@ public:
 
 	int PopTickSystem(int& gameTick, int& PopTick, int& Population, int& popInc, float& Food, int& IdlePop, int& popCap);
 
-	std::string ftos(float f);
+	void userInput(int& ID);
 
-	void userInput();
+	//void userInput();
 
 	void populateButtonVec();
 
@@ -83,7 +83,6 @@ protected:
 	float tick = 0.0f;
 
 	//Achievement
-	std::string achieve;
 	std::string achieve1 = "Another House!";
 	std::string achieve2 = "Dabbling Farmer!";
 	std::string achieve3 = "Timberrrr!";

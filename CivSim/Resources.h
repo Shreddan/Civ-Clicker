@@ -15,6 +15,8 @@ public:
 
 	void gatherRates(int woodgatherers, int foodgatherers, int stonegatherers, int miners, int minters, float woodModifier, float foodModifier, float stoneModifier, float metalModifier, float coinModifier);
 
+	std::string ftos(float f);
+
 	float Wood = 0.0f;
 
 	float woodGatherRate = 0;

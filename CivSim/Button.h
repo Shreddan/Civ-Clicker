@@ -5,7 +5,7 @@ class Button
 {
 public:
 	
-	Button(std::string label, int ox, int oy, int w, int h, int inter1, int inter2, olc::Pixel col, olc::Pixel tcol = olc::BLACK);
+	Button(std::string label, int ox, int oy, int w, int h, int inter1, int inter2, olc::Pixel col, int tSize, bool hasText = false, olc::Pixel tcol = olc::BLACK);
 	~Button();
 
 	void DrawSelf(olc::PixelGameEngine* pge);
@@ -20,5 +20,7 @@ public:
 	std::pair<int, int> interaction;
 	olc::Pixel col;
 	olc::Pixel tCol;
+	int tScale;
+	bool hasText;
 };
 

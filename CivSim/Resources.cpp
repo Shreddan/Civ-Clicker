@@ -28,3 +28,11 @@ void Resources::gatherRates(int woodgatherers, int foodgatherers, int stonegathe
 	coinGatherRate = minters * 1.1 + coinModifier;
 	
 }
+
+std::string Resources::ftos(float f)
+{
+	std::stringstream stream;
+	stream << std::fixed << std::setprecision(2) << f;
+	std::string s = stream.str();
+	return s;
+}

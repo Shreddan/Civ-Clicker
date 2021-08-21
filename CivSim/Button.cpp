@@ -1,6 +1,6 @@
 #include "Button.h"
 
-Button::Button(std::string label, int ox, int oy, int w, int h, int inter1, int inter2, olc::Pixel col, olc::Pixel tcol)
+Button::Button(std::string label, int ox, int oy, int w, int h, int inter1, int inter2, olc::Pixel col, int tSize, bool hasText, olc::Pixel tcol)
 {
 	this->label = label;
 	this->originx = ox;
@@ -10,6 +10,8 @@ Button::Button(std::string label, int ox, int oy, int w, int h, int inter1, int 
 	this->interaction = std::make_pair(inter1, inter2);
 	this->col = col;
 	this->tCol = tcol;
+	this->tScale = tSize;
+	this->hasText = hasText;
 }
 
 Button::~Button()
@@ -19,7 +21,14 @@ Button::~Button()
 void Button::DrawSelf(olc::PixelGameEngine* pge)
 {
 	pge->FillRect(olc::vi2d(this->originx, this->originy), olc::vi2d(this->w, this->h), this->col);
-	pge->DrawStringDecal(olc::vf2d(this->originx + (this->w / 3), this->originy + (this->h / 3)), this->label, this->tCol, olc::vf2d(3.f, 3.f));
+	if (this->hasText)
+	{
+		pge->DrawStringDecal(olc::vf2d(this->originx + (this->w / 4), this->originy + (this->h / 4)), this->label, this->tCol, olc::vf2d(this->tScale, this->tScale));
+	}
+	else
+	{
+		pge->DrawStringDecal(olc::vf2d(this->originx + (this->w / 3), this->originy + (this->h / 4)), this->label, this->tCol, olc::vf2d(this->tScale, this->tScale));
+	}
 }
 
 bool Button::onHover(olc::PixelGameEngine* pge)

@@ -15,9 +15,9 @@ Label::~Label()
 {
 }
 
-void Label::updateLabel(int& id2, Civilisation* civ)
+void Label::updateLabel( Civilisation* civ)
 {
-	switch (id2)
+	switch (this->ID2)
 	{
 	case 0:
 	{
@@ -26,12 +26,42 @@ void Label::updateLabel(int& id2, Civilisation* civ)
 	}
 	case 1:
 	{
-		this->reslab = civ->getResAsString(id2);
+		this->reslab = civ->getResAsString(this->ID2);
 		break;
 	}
 	case 2:
 	{
-		this->reslab = civ->getResAsString(id2);
+		this->reslab = civ->getResAsString(this->ID2);
+		break;
+	}
+	case 3:
+	{
+		this->reslab = civ->getResAsString(this->ID2);
+		break;
+	}
+	case 4:
+	{
+		this->reslab = civ->res->ftos(civ->res->Wood);
+		break;
+	}
+	case 5:
+	{
+		this->reslab = civ->res->ftos(civ->res->Food);
+		break;
+	}
+	case 6:
+	{
+		this->reslab = civ->res->ftos(civ->res->Stone);
+		break;
+	}
+	case 7:
+	{
+		this->reslab = civ->res->ftos(civ->res->Metal);
+		break;
+	}
+	case 8:
+	{
+		this->reslab = civ->res->ftos(civ->res->Coin);
 		break;
 	}
 	}
