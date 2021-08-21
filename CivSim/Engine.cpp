@@ -268,21 +268,39 @@ void Engine::populateButtonVec()
 	Game.emplace_back("-", 920, 340, 40, 30, GameScreen, 9, olc::GREY, 3, false, olc::RED);
 	Game.emplace_back("+", 970, 340, 40, 30, GameScreen, 10, olc::GREY, 3, false, olc::GREEN);
 
-	labels.emplace_back(50, 100, civ->type, olc::DARK_GREEN, 1, 0, 0, 3);
-	labels.emplace_back(350, 50, "Population = ", olc::WHITE, 1, 1, 2, 3);
-	labels.emplace_back(450, 80, "Idle = ", olc::WHITE, 1, 1, 1, 2);
-	labels.emplace_back(800, 50, "Cap = ", olc::WHITE, 1, 1, 3, 2);
-	labels.emplace_back(120, 175, "Wood = ", olc::WHITE, 1, 4, 0, 2);
-	labels.emplace_back(120, 200, "Food = ", olc::WHITE, 1, 5, 0, 2);
-	labels.emplace_back(120, 225, "Stone = ", olc::WHITE, 1, 6, 0, 2);
-	labels.emplace_back(120, 250, "Metal = ", olc::WHITE, 1, 7, 0, 2);
-	labels.emplace_back(120, 275, "Coin = ", olc::WHITE, 1, 8, 0, 2);
-	labels.emplace_back(580, 150, "Wood Gatherers = ", olc::WHITE, 1, 1, 4, 2);
-	labels.emplace_back(580, 200, "Food Gatherers = ", olc::WHITE, 1, 1, 5, 2);
-	labels.emplace_back(580, 250, "Stone Gatherers = ", olc::WHITE, 1, 1, 6, 2);
-	labels.emplace_back(580, 300, "Miners = ", olc::WHITE, 1, 1, 7, 2);
-	labels.emplace_back(580, 350, "Minters = ", olc::WHITE, 1, 1, 8, 2);
-	labels.emplace_back(580, 400, "Total Gatherers = ", olc::WHITE, 1, 1, 9, 2);
+	Help.emplace_back("Back", 500, 550, 110, 50, GameScreen, 0, olc::DARK_GREY, 3, true, olc::WHITE);
+
+	labels.emplace_back(50, 100, civ->type, olc::DARK_GREEN, GameScreen, 0, 0, 3);
+	labels.emplace_back(350, 50, "Population = ", olc::WHITE, GameScreen, 1, 2, 3);
+	labels.emplace_back(450, 80, "Idle = ", olc::WHITE, GameScreen, 1, 1, 2);
+	labels.emplace_back(800, 50, "Cap = ", olc::WHITE, GameScreen, 1, 3, 2);
+	labels.emplace_back(120, 175, "Wood = ", olc::WHITE, GameScreen, 4, 0, 2);
+	labels.emplace_back(120, 200, "Food = ", olc::WHITE, GameScreen, 5, 0, 2);
+	labels.emplace_back(120, 225, "Stone = ", olc::WHITE, GameScreen, 6, 0, 2);
+	labels.emplace_back(120, 250, "Metal = ", olc::WHITE, GameScreen, 7, 0, 2);
+	labels.emplace_back(120, 275, "Coin = ", olc::WHITE, GameScreen, 8, 0, 2);
+	labels.emplace_back(580, 150, "Wood Gatherers = ", olc::WHITE, GameScreen, 1, 4, 2);
+	labels.emplace_back(580, 200, "Food Gatherers = ", olc::WHITE, GameScreen, 1, 5, 2);
+	labels.emplace_back(580, 250, "Stone Gatherers = ", olc::WHITE, GameScreen, 1, 6, 2);
+	labels.emplace_back(580, 300, "Miners = ", olc::WHITE, GameScreen, 1, 7, 2);
+	labels.emplace_back(580, 350, "Minters = ", olc::WHITE, GameScreen, 1, 8, 2);
+	labels.emplace_back(580, 400, "Total Gatherers = ", olc::WHITE, GameScreen, 1, 9, 2);
+
+	labels.emplace_back(30, 100, "Welcome to Civ-Clicker", olc::WHITE, HelpScreen, 0, 0, 2);
+	labels.emplace_back(30, 150, "Build Houses to increase your Population Cap", olc::WHITE, HelpScreen, 0, 0, 2);
+	labels.emplace_back(30, 175, "buildings other than houses give a boost to the workers", olc::WHITE, HelpScreen, 0, 0, 2);
+	labels.emplace_back(30, 225, "the aim is to increase your settlement size", olc::WHITE, HelpScreen, 0, 0, 2);
+	labels.emplace_back(30, 250, "for this you will need to gather resources and use them to build.", olc::WHITE, HelpScreen, 0, 0, 2);
+	labels.emplace_back(30, 275, "The higher your Population, the more food they will require", olc::WHITE, HelpScreen, 0, 0, 2);
+	labels.emplace_back(30, 300, "Everything in brackets beside a button is a requirement", olc::WHITE, HelpScreen, 0, 0, 2);
+	labels.emplace_back(30, 325, "Will you get all the achievements?", olc::WHITE, HelpScreen, 0, 0, 2);
+
+	labels.emplace_back(120, 100, "House Total = ", olc::WHITE, BuildingScreen, 1, 10, 2);
+	labels.emplace_back(120, 150, "Farm Total = ", olc::WHITE, BuildingScreen, 1, 11, 2);
+	labels.emplace_back(120, 200, "TimberYard Total = ", olc::WHITE, BuildingScreen, 1, 12, 2);
+	labels.emplace_back(120, 250, "Quarry Total = ", olc::WHITE, BuildingScreen, 1, 13, 2);
+	labels.emplace_back(120, 300, "Mine Total = ", olc::WHITE, BuildingScreen, 1, 14, 2);
+	labels.emplace_back(120, 350, "Mint Total = ", olc::WHITE, BuildingScreen, 1, 15, 2);
 }
 
 
@@ -364,37 +382,19 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 
 	case HelpScreen:
 	{
-		DrawString(30, 100, "Welcome to Civ-Clicker", olc::WHITE, 2U);
-
-		DrawString(30, 150, "Build Houses to increase your Population Cap", olc::WHITE, 2U);
-		DrawString(30, 175, "buildings other than houses give a boost to the workers", olc::WHITE, 2U);
-		DrawString(30, 225, "the aim is to increase your settlement size", olc::WHITE, 2U);
-		DrawString(30, 250, "for this you will need to gather resources and use them to build.", olc::WHITE, 2U);
-		DrawString(30, 275, "The higher your Population, the more food they will require", olc::WHITE, 2U);
-		DrawString(30, 300, "Everything in brackets beside a button is a requirement", olc::WHITE, 2U);
-		DrawString(30, 325, "Will you get all the achievements?", olc::WHITE, 2U);
-
-		FillRect(500, 550, 110, 50, olc::DARK_GREY);
-		DrawStringDecal(olc::vf2d(525, 565), "Back", olc::WHITE, olc::vf2d(2.f, 2.f));
-
-		if (hBackselected)
+		for (size_t i = 0; i < Help.size(); i++)
 		{
-			DrawRect(500, 550, 110, 50, olc::YELLOW);
+			Help[i].DrawSelf(this);
+			Help[i].onHover(this);
+			if (Help[i].onInteract(this))
+			{
+				GameState = Help[i].interaction.first;
+			}
 		}
-
 		break;
 	}
 	case BuildingScreen:
 	{
-
-		//Buildings
-		DrawString(120, 100, "House Total = " + std::to_string(civ->houseTotal), olc::WHITE, 2U);
-		DrawString(120, 150, "Farm Total = " + std::to_string(civ->farmTotal), olc::WHITE, 2U);
-		DrawString(120, 200, "TimberYard Total = " + std::to_string(civ->timberyardTotal), olc::WHITE, 2U);
-		DrawString(120, 250, "Quarry Total = " + std::to_string(civ->quarryTotal), olc::WHITE, 2U);
-		DrawString(120, 300, "Mine Total = " + std::to_string(civ->mineTotal), olc::WHITE, 2U);
-		DrawString(120, 350, "Mint Total = " + std::to_string(civ->mintTotal), olc::WHITE, 2U);
-
 		//Building Buttons
 		FillRect(550, 100, 40, 30, olc::DARK_GREY);
 		FillRect(550, 150, 40, 30, olc::DARK_GREY);

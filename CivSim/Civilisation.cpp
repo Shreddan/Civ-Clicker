@@ -135,6 +135,36 @@ std::string Civilisation::getResAsString(int i)
 		return std::to_string(totalGatherers);
 		break;
 	}
+	case 10:
+	{
+		return std::to_string(houseTotal);
+		break;
+	}
+	case 11:
+	{
+		return std::to_string(farmTotal);
+		break;
+	}
+	case 12:
+	{
+		return std::to_string(timberyardTotal);
+		break;
+	}
+	case 13:
+	{
+		return std::to_string(quarryTotal);
+		break;
+	}
+	case 14:
+	{
+		return std::to_string(mineTotal);
+		break;
+	}
+	case 15:
+	{
+		return std::to_string(mintTotal);
+		break;
+	}
 	}
 }
 
