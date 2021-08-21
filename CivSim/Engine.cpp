@@ -310,29 +310,29 @@ void Engine::userInput(int& ID)
 
 void Engine::populateButtonVec()
 {
-	Main.emplace_back("Start", 420, 150, 300, 60, GameScreen, 0, olc::DARK_GREY, 3);
-	Main.emplace_back("Options", 420, 250, 300, 60, Options, 0, olc::DARK_GREY, 3);
-	Main.emplace_back("Quit", 420, 350, 300, 60, -1, 0, olc::DARK_GREY, 3);
+	Main.emplace_back("Start", 420, 150, 300, 60, GameScreen, 0, olc::DARK_GREY, 3, true);
+	Main.emplace_back("Options", 420, 250, 300, 60, Options, 0, olc::DARK_GREY, 3, true);
+	Main.emplace_back("Quit", 420, 350, 300, 60, -1, 0, olc::DARK_GREY, 3, true);
 
 	//Nav Buttons
-	Game.emplace_back("Help", 30, 550, 100, 50, HelpScreen, 0, olc::DARK_GREY, 2, olc::WHITE);
-	Game.emplace_back("Buildings", 180, 550, 180, 50, BuildingScreen, 0, olc::DARK_GREY, 2, olc::WHITE);
-	Game.emplace_back("Upgrades", 410, 550, 160, 50, Upgrades, 0, olc::DARK_GREY, 2, olc::WHITE);
-	Game.emplace_back("Achievements", 620, 550, 230, 50, Achievements, 0, olc::DARK_GREY, 2, olc::WHITE);
-	Game.emplace_back("Credits", 890, 550, 150, 50, Credits, 0, olc::DARK_GREY, 2, olc::WHITE);
+	Game.emplace_back("Help", 30, 550, 100, 50, HelpScreen, 0, olc::DARK_GREY, 2, true, olc::WHITE);
+	Game.emplace_back("Buildings", 180, 550, 180, 50, BuildingScreen, 0, olc::DARK_GREY, 2, true, olc::WHITE);
+	Game.emplace_back("Upgrades", 410, 550, 160, 50, Upgrades, 0, olc::DARK_GREY, 2, true, olc::WHITE);
+	Game.emplace_back("Achievements", 620, 550, 230, 50, Achievements, 0, olc::DARK_GREY, 2, true, olc::WHITE);
+	Game.emplace_back("Credits", 890, 550, 150, 50, Credits, 0, olc::DARK_GREY, 2, true, olc::WHITE);
 
 
 	//Worker Buttons
-	Game.emplace_back("-", 920, 140, 40, 30, GameScreen, 1, olc::GREY, 3, olc::RED);
-	Game.emplace_back("+", 970, 140, 40, 30, GameScreen, 2, olc::GREY, 3, olc::GREEN);
-	Game.emplace_back("-", 920, 190, 40, 30, GameScreen, 3, olc::GREY, 3, olc::RED);
-	Game.emplace_back("+", 970, 190, 40, 30, GameScreen, 4, olc::GREY, 3, olc::GREEN);
-	Game.emplace_back("-", 920, 240, 40, 30, GameScreen, 5, olc::GREY, 3, olc::RED);
-	Game.emplace_back("+", 970, 240, 40, 30, GameScreen, 6, olc::GREY, 3, olc::GREEN);
-	Game.emplace_back("-", 920, 290, 40, 30, GameScreen, 7, olc::GREY, 3, olc::RED);
-	Game.emplace_back("+", 970, 290, 40, 30, GameScreen, 8, olc::GREY, 3, olc::GREEN);
-	Game.emplace_back("-", 920, 340, 40, 30, GameScreen, 9, olc::GREY, 3, olc::RED);
-	Game.emplace_back("+", 970, 340, 40, 30, GameScreen, 10, olc::GREY, 3, olc::GREEN);
+	Game.emplace_back("-", 920, 140, 40, 30, GameScreen, 1, olc::GREY, 3, false, olc::RED);
+	Game.emplace_back("+", 970, 140, 40, 30, GameScreen, 2, olc::GREY, 3, false, olc::GREEN);
+	Game.emplace_back("-", 920, 190, 40, 30, GameScreen, 3, olc::GREY, 3, false, olc::RED);
+	Game.emplace_back("+", 970, 190, 40, 30, GameScreen, 4, olc::GREY, 3, false, olc::GREEN);
+	Game.emplace_back("-", 920, 240, 40, 30, GameScreen, 5, olc::GREY, 3, false, olc::RED);
+	Game.emplace_back("+", 970, 240, 40, 30, GameScreen, 6, olc::GREY, 3, false, olc::GREEN);
+	Game.emplace_back("-", 920, 290, 40, 30, GameScreen, 7, olc::GREY, 3, false, olc::RED);
+	Game.emplace_back("+", 970, 290, 40, 30, GameScreen, 8, olc::GREY, 3, false, olc::GREEN);
+	Game.emplace_back("-", 920, 340, 40, 30, GameScreen, 9, olc::GREY, 3, false, olc::RED);
+	Game.emplace_back("+", 970, 340, 40, 30, GameScreen, 10, olc::GREY, 3, false, olc::GREEN);
 
 	labels.emplace_back(50, 100, civ->type, olc::DARK_GREEN, 1, 0, 3);
 	labels.emplace_back(350, 50, "Population = ", olc::WHITE, 1, 2, 3);

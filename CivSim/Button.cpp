@@ -23,7 +23,7 @@ void Button::DrawSelf(olc::PixelGameEngine* pge)
 	pge->FillRect(olc::vi2d(this->originx, this->originy), olc::vi2d(this->w, this->h), this->col);
 	if (this->hasText)
 	{
-		pge->DrawStringDecal(olc::vf2d(this->originx + (this->w / 4), this->originy + (this->h / 4)), this->label, this->tCol, olc::vf2d(this->tScale, this->tScale));
+		pge->DrawStringDecal(olc::vf2d(this->originx + (this->w / 8), this->originy + (this->h / 4)), this->label, this->tCol, olc::vf2d(this->tScale, this->tScale));
 	}
 	else
 	{
