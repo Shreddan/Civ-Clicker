@@ -105,6 +105,36 @@ std::string Civilisation::getResAsString(int i)
 		return std::to_string(popCap);
 		break;
 	}
+	case 4:
+	{
+		return std::to_string(woodGatherers);
+		break;
+	}
+	case 5:
+	{
+		return std::to_string(foodGatherers);
+		break;
+	}
+	case 6:
+	{
+		return std::to_string(stoneGatherers);
+		break;
+	}
+	case 7:
+	{
+		return std::to_string(Miners);
+		break;
+	}
+	case 8:
+	{
+		return std::to_string(Minters);
+		break;
+	}
+	case 9:
+	{
+		return std::to_string(totalGatherers);
+		break;
+	}
 	}
 }
 

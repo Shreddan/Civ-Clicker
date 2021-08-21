@@ -1,6 +1,6 @@
 #include "Label.h"
 
-Label::Label(int x, int y, std::string lab1, olc::Pixel col, int id, int id2, float scale)
+Label::Label(int x, int y, std::string lab1, olc::Pixel col, int id, int id2, int id3, float scale)
 {
 	this->x = x;
 	this->y = y;
@@ -8,6 +8,7 @@ Label::Label(int x, int y, std::string lab1, olc::Pixel col, int id, int id2, fl
 	this->col = col;
 	this->ID = id;
 	this->ID2 = id2;
+	this->ID3 = id3;
 	this->scale = scale;
 }
 
@@ -26,17 +27,7 @@ void Label::updateLabel( Civilisation* civ)
 	}
 	case 1:
 	{
-		this->reslab = civ->getResAsString(this->ID2);
-		break;
-	}
-	case 2:
-	{
-		this->reslab = civ->getResAsString(this->ID2);
-		break;
-	}
-	case 3:
-	{
-		this->reslab = civ->getResAsString(this->ID2);
+		this->reslab = civ->getResAsString(this->ID3);
 		break;
 	}
 	case 4:
