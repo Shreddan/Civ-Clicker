@@ -49,28 +49,6 @@ protected:
 
 	bool OnUserUpdate(float fElapsedTime);
 
-	
-	//Options bools
-	bool backSelected = false;
-
-	//GameScreen bools
-	bool helpSelected = false;
-	bool buildSelected = false;
-	bool upgrSelected = false;
-	bool achieveSelected = false;
-	bool creditSelected = false;
-
-	//Upgrade bools
-	
-
-
-	//Back bools
-	bool hBackselected = false;
-	bool bBackselected = false;
-	bool uBackselected = false;
-	bool aBackselected = false;
-	bool cBackselected = false;
-
 	int	GameState = MainMenu;
 
 	Civilisation* civ = nullptr;

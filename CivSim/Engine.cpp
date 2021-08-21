@@ -103,6 +103,44 @@ void Engine::userInput(int& ID)
 		civ->Minters++;
 		break;
 	}
+	case 11:
+	{
+		civ->res->Wood -= 10;
+		civ->houseTotal++;
+		break;
+	}
+	case 12:
+	{
+		civ->res->Wood -= 15;
+		civ->farmTotal++;
+		break;
+	}
+	case 13:
+	{
+		civ->res->Metal -= 10;
+		civ->timberyardTotal++;
+		break;
+	}
+	case 14:
+	{
+		civ->res->Metal -= 10;
+		civ->res->Wood -= 5;
+		civ->quarryTotal++;
+		break;
+	}
+	case 15:
+	{
+		civ->res->Metal -= 25;
+		civ->res->Wood -= 15;
+		civ->mineTotal++;
+		break;
+	}
+	case 16:
+	{
+		civ->res->Metal -= 50;
+		civ->mintTotal++;
+		break;
+	}
 	}
 	//Upgrade Inputs
 
@@ -130,115 +168,6 @@ void Engine::userInput(int& ID)
 			civ->res->Coin -= 300;
 			civ->upgrade3 = true;
 		}
-	}
-
-
-	//BuildingScreen Inputs
-	if (GetMouseX() >= 550 && GetMouseX() <= 590 && GetMouseY() >= 100 && GetMouseY() <= 130 && GameState == BuildingScreen)
-	{
-		if (GetMouse(0).bPressed && civ->res->Wood >= 10)
-		{
-			civ->res->Wood -= 10;
-			civ->houseTotal++;
-		}
-	}
-	else if (GetMouseX() >= 500 && GetMouseX() <= 610 && GetMouseY() >= 150 && GetMouseY() <= 180 && GameState == BuildingScreen)
-	{
-		if (GetMouse(0).bPressed && civ->res->Wood >= 15)
-		{
-			civ->res->Wood -= 15;
-			civ->farmTotal++;
-		}
-	}
-	else if (GetMouseX() >= 500 && GetMouseX() <= 610 && GetMouseY() >= 200 && GetMouseY() <= 230 && GameState == BuildingScreen)
-	{
-		if (GetMouse(0).bPressed && civ->res->Metal >= 10)
-		{
-			civ->res->Metal -= 10;
-			civ->timberyardTotal++;
-		}
-	}
-	else if (GetMouseX() >= 500 && GetMouseX() <= 610 && GetMouseY() >= 250 && GetMouseY() <= 280 && GameState == BuildingScreen)
-	{
-		if (GetMouse(0).bPressed && civ->res->Metal >= 10 && civ->res->Wood >= 5)
-		{
-			civ->res->Metal -= 10;
-			civ->res->Wood -= 5;
-			civ->quarryTotal++;
-		}
-	}
-	else if (GetMouseX() >= 500 && GetMouseX() <= 610 && GetMouseY() >= 300 && GetMouseY() <= 330 && GameState == BuildingScreen)
-	{
-		if (GetMouse(0).bPressed && civ->res->Metal >= 25 && civ->res->Wood >= 15)
-		{
-			civ->res->Metal -= 25;
-			civ->res->Wood -= 15;
-			civ->mineTotal++;
-		}
-	}
-	else if (GetMouseX() >= 500 && GetMouseX() <= 610 && GetMouseY() >= 350 && GetMouseY() <= 380 && GameState == BuildingScreen)
-	{
-		if (GetMouse(0).bPressed && civ->res->Metal >= 50)
-		{
-			civ->res->Metal -= 50;
-			civ->mintTotal++;
-		}
-	}
-	else if (GetMouseX() >= 500 && GetMouseX() <= 610 && GetMouseY() >= 550 && GetMouseY() <= 600 && GameState == BuildingScreen)
-	{
-		bBackselected = true;
-		if (GetMouse(0).bPressed && bBackselected)
-		{
-			GameState = GameScreen;
-		}
-	}
-	else
-	{
-		bBackselected = false;
-	}
-
-
-	if (GetMouseX() >= 500 && GetMouseX() <= 610 && GetMouseY() >= 550 && GetMouseY() <= 600 && GameState == Upgrades)
-	{
-		uBackselected = true;
-		if (GetMouse(0).bPressed && uBackselected)
-		{
-			GameState = GameScreen;
-		}
-	}
-	else
-	{
-		uBackselected = false;
-	}
-
-
-	if (GetMouseX() >= 500 && GetMouseX() <= 610 && GetMouseY() >= 550 && GetMouseY() <= 600 && GameState == Achievements)
-	{
-		aBackselected = true;
-		if (GetMouse(0).bPressed && aBackselected)
-		{
-			GameState = GameScreen;
-		}
-
-	}
-	else
-	{
-		aBackselected = false;
-	}
-
-
-	if (GetMouseX() >= 500 && GetMouseX() <= 610 && GetMouseY() >= 550 && GetMouseY() <= 600 && GameState == Credits)
-	{
-		cBackselected = true;
-		if (GetMouse(0).bPressed && cBackselected)
-		{
-			GameState = GameScreen;
-		}
-
-	}
-	else
-	{
-		cBackselected = false;
 	}
 }
 
@@ -268,7 +197,15 @@ void Engine::populateButtonVec()
 	Game.emplace_back("-", 920, 340, 40, 30, GameScreen, 9, olc::GREY, 3, false, olc::RED);
 	Game.emplace_back("+", 970, 340, 40, 30, GameScreen, 10, olc::GREY, 3, false, olc::GREEN);
 
-	Help.emplace_back("Back", 500, 550, 110, 50, GameScreen, 0, olc::DARK_GREY, 3, true, olc::WHITE);
+	Help.emplace_back("Back", 500, 550, 120, 50, GameScreen, 0, olc::DARK_GREY, 3, true, olc::WHITE);
+
+	Build.emplace_back("+", 550, 100, 40, 30, BuildingScreen, 11, olc::DARK_GREY, 2, false, olc::GREEN);
+	Build.emplace_back("+", 550, 150, 40, 30, BuildingScreen, 12, olc::DARK_GREY, 2, false, olc::GREEN);
+	Build.emplace_back("+", 550, 200, 40, 30, BuildingScreen, 13, olc::DARK_GREY, 2, false, olc::GREEN);
+	Build.emplace_back("+", 550, 250, 40, 30, BuildingScreen, 14, olc::DARK_GREY, 2, false, olc::GREEN);
+	Build.emplace_back("+", 550, 300, 40, 30, BuildingScreen, 15, olc::DARK_GREY, 2, false, olc::GREEN);
+	Build.emplace_back("+", 550, 350, 40, 30, BuildingScreen, 16, olc::DARK_GREY, 2, false, olc::GREEN);
+	Build.emplace_back("Back", 500, 550, 120, 50, GameScreen, 0, olc::DARK_GREY, 3, true, olc::WHITE);
 
 	labels.emplace_back(50, 100, civ->type, olc::DARK_GREEN, GameScreen, 0, 0, 3);
 	labels.emplace_back(350, 50, "Population = ", olc::WHITE, GameScreen, 1, 2, 3);
@@ -301,6 +238,13 @@ void Engine::populateButtonVec()
 	labels.emplace_back(120, 250, "Quarry Total = ", olc::WHITE, BuildingScreen, 1, 13, 2);
 	labels.emplace_back(120, 300, "Mine Total = ", olc::WHITE, BuildingScreen, 1, 14, 2);
 	labels.emplace_back(120, 350, "Mint Total = ", olc::WHITE, BuildingScreen, 1, 15, 2);
+
+	labels.emplace_back(610, 109, "(10 Wood)", olc::WHITE, BuildingScreen, 0, 0, 2);
+	labels.emplace_back(610, 159, "(15 Wood)", olc::WHITE, BuildingScreen, 0, 0, 2);
+	labels.emplace_back(610, 209, "(10 Metal)", olc::WHITE, BuildingScreen, 0, 0, 2);
+	labels.emplace_back(610, 259, "(10 Metal & 5 Wood)", olc::WHITE, BuildingScreen, 0, 0, 2);
+	labels.emplace_back(610, 309, "(25 Metal & 15 Wood)", olc::WHITE, BuildingScreen, 0, 0, 2);
+	labels.emplace_back(610, 359, "(50 Metal)", olc::WHITE, BuildingScreen, 0, 0, 2);
 }
 
 
@@ -317,9 +261,7 @@ bool Engine::OnUserCreate()
 bool Engine::OnUserUpdate(float fElapsedTime)
 {
 	Clear(olc::VERY_DARK_GREY);
-
 	civ->calculateModifiers();
-
 	TickSystem(tick, civ->Population, fElapsedTime, gameTick, civ->res->woodGatherRate, civ->res->foodGatherRate, civ->res->stoneGatherRate, civ->res->metalGatherRate, civ->res->coinGatherRate, civ->res->Wood, civ->res->Food, civ->res->Stone, civ->res->Metal, civ->res->Coin, civ->woodGatherers, civ->foodGatherers, civ->stoneGatherers, civ->Miners, civ->Minters, civ->woodModifier, civ->foodModifier, civ->stoneModifier, civ->metalModifier, civ->coinModifier);
 	civ->calculateTotalGatherers();
 	civ->calculateIdle();
@@ -357,7 +299,6 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 
 	case GameScreen:
 	{
-
 		for (size_t i = 0; i < Game.size(); i++)
 		{
 			Game[i].DrawSelf(this);
@@ -371,12 +312,10 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 		//GameTime - Bottom
 		//DrawString(150, 500, "Tick = " + ftos(tick), olc::WHITE, 2U);
 		//DrawString(600, 500, "PopTick = " + std::to_string(PopTick), olc::WHITE, 2U);
-
 		//Achievement notif
 		/*SetPixelMode(olc::Pixel::ALPHA);
 		DrawString(120, 400, achieve, olc::Pixel(0, 255, 0, uint8_t(alpha0 * 255)), 3U);
 		SetPixelMode(olc::Pixel::NORMAL);*/
-
 		break;
 	}
 
@@ -395,42 +334,19 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 	}
 	case BuildingScreen:
 	{
-		//Building Buttons
-		FillRect(550, 100, 40, 30, olc::DARK_GREY);
-		FillRect(550, 150, 40, 30, olc::DARK_GREY);
-		FillRect(550, 200, 40, 30, olc::DARK_GREY);
-		FillRect(550, 250, 40, 30, olc::DARK_GREY);
-		FillRect(550, 300, 40, 30, olc::DARK_GREY);
-		FillRect(550, 350, 40, 30, olc::DARK_GREY);
-
-		//Button Text
-		DrawString(565, 109, "+", olc::GREEN, 2U);
-		DrawString(610, 109, "(10 Wood)", olc::WHITE, 2U);
-		DrawString(565, 159, "+", olc::GREEN, 2U);
-		DrawString(610, 159, "(15 Wood)", olc::WHITE, 2U);
-		DrawString(565, 209, "+", olc::GREEN, 2U);
-		DrawString(610, 209, "(10 Metal)", olc::WHITE, 2U);
-		DrawString(565, 259, "+", olc::GREEN, 2U);
-		DrawString(610, 259, "(10 Metal & 5 Wood)", olc::WHITE, 2U);
-		DrawString(565, 309, "+", olc::GREEN, 2U);
-		DrawString(610, 309, "(25 Metal & 15 Wood)", olc::WHITE, 2U);
-		DrawString(565, 359, "+", olc::GREEN, 2U);
-		DrawString(610, 359, "(50 Metal)", olc::WHITE, 2U);
-
+		for (size_t i = 0; i < Build.size(); i++)
+		{
+			Build[i].DrawSelf(this);
+			Build[i].onHover(this);
+			if (Build[i].onInteract(this))
+			{
+				GameState = Build[i].interaction.first;
+			}
+		}
 		//Achievement notif
 		/*SetPixelMode(olc::Pixel::ALPHA);
 		DrawString(120, 400, achieve, olc::Pixel(0, 255, 0, uint8_t(alpha0 * 255)), 3U);
 		SetPixelMode(olc::Pixel::NORMAL);*/
-
-
-		FillRect(500, 550, 110, 50, olc::DARK_GREY);
-		DrawString(525, 565, "Back", olc::WHITE, 2U);
-
-		if (bBackselected)
-		{
-			DrawRect(500, 550, 110, 50, olc::YELLOW);
-		}
-
 		break;
 	}
 	case Upgrades:
@@ -476,13 +392,6 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 
 		FillRect(500, 550, 110, 50, olc::DARK_GREY);
 		DrawString(525, 565, "Back", olc::WHITE, 2U);
-
-		if (uBackselected)
-		{
-			DrawRect(500, 550, 110, 50, olc::YELLOW);
-		}
-
-
 		break;
 	}
 	case Achievements:
@@ -500,11 +409,6 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 		FillRect(500, 550, 110, 50, olc::DARK_GREY);
 		DrawString(525, 565, "Back", olc::WHITE, 2U);
 
-		if (aBackselected)
-		{
-			DrawRect(500, 550, 110, 50, olc::YELLOW);
-		}
-
 		break;
 	}
 	case Credits:
@@ -516,11 +420,6 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 		DrawString(60, 215, " for being my rubber duckies!", olc::WHITE, 2U);
 		FillRect(500, 550, 110, 50, olc::DARK_GREY);
 		DrawString(525, 565, "Back", olc::WHITE, 2U);
-
-		if (cBackselected)
-		{
-			DrawRect(500, 550, 110, 50, olc::YELLOW);
-		}
 		break;
 	}
 	case Options:
@@ -530,10 +429,6 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 		FillRect(420, 350, 300, 60, olc::DARK_GREY);
 		//Button Text
 		DrawString(520, 370, "Back", olc::BLACK, 3U);
-		if (backSelected)
-		{
-			DrawRect(420, 350, 300, 60, olc::YELLOW);
-		}
 		break;
 	}
 	case -1:
