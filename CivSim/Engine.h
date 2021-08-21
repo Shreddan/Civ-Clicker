@@ -43,6 +43,8 @@ public:
 
 	std::vector<Label> labels;
 
+	std::vector<Achievement> ach;
+
 protected:
 
 	bool OnUserCreate();
@@ -52,7 +54,7 @@ protected:
 	int	GameState = MainMenu;
 
 	Civilisation* civ = nullptr;
-	Achievement* ach = nullptr;
+	
 	discord::Core* core = nullptr;
 
 	//Tick Variables

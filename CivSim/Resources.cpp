@@ -15,8 +15,6 @@ void Resources::resAccum()
 	Stone += stoneGatherRate;
 	Metal += metalGatherRate;
 	Coin += coinGatherRate;
-
-	
 }
 
 void Resources::gatherRates(int woodgatherers, int foodgatherers, int stonegatherers, int miners, int minters, float woodModifier, float foodModifier, float stoneModifier, float metalModifier, float coinModifier)
@@ -26,7 +24,6 @@ void Resources::gatherRates(int woodgatherers, int foodgatherers, int stonegathe
 	stoneGatherRate = stonegatherers * 1.3f + stoneModifier;
 	metalGatherRate = miners * 1.5 + metalModifier;
 	coinGatherRate = minters * 1.1 + coinModifier;
-	
 }
 
 std::string Resources::ftos(float f)
