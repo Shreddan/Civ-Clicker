@@ -1,0 +1,117 @@
+﻿Build started 18/08/2021 13:13:14.
+Logging verbosity is set to: Normal.     1>Project "C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\CivSim.vcxproj" on node 2 (Build target(s)).
+     1>PrepareForBuild:
+         Creating directory "C:\Users\User\source\repos\Shreddan\Civ-Clicker\x64\Release\".
+         Creating directory "x64\Release\CivSim.tlog\".
+       InitializeBuildStatus:
+         Creating "x64\Release\CivSim.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\bin\HostX86\x64\CL.exe /c /Zi /nologo /W3 /WX- /diagnostics:column /sdl /O2 /Oi /GL /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /permissive- /Zc:wchar_t /Zc:forScope /Zc:inline /std:c++20 /Fo"x64\Release\\" /Fd"x64\Release\vc142.pdb" /external:W3 /Gd /TP /FC /errorReport:prompt Button.cpp CivSim.cpp Engine.cpp
+         Button.cpp
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Button.cpp(22,67): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+                 with
+                 [
+                     T=float
+                 ]
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Button.cpp(22,47): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+                 with
+                 [
+                     T=float
+                 ]
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Button.cpp(31,82): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+                 with
+                 [
+                     T=float
+                 ]
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Button.cpp(31,73): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+                 with
+                 [
+                     T=float
+                 ]
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Button.cpp(31,47): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+                 with
+                 [
+                     T=float
+                 ]
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Button.cpp(31,32): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+                 with
+                 [
+                     T=float
+                 ]
+         CivSim.cpp
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.h(126,33): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.h(127,39): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.h(128,36): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.h(129,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.h(130,33): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+         Engine.cpp
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.h(126,33): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.h(127,39): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.h(128,36): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.h(129,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.h(130,33): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.cpp(98,33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.cpp(99,33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.cpp(180,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.cpp(184,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.cpp(189,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.cpp(193,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.cpp(196,30): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.cpp(197,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.cpp(198,27): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.cpp(524,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\bin\HostX86\x64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\User\source\repos\Shreddan\Civ-Clicker\x64\Release\CivSim.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\User\source\repos\Shreddan\Civ-Clicker\x64\Release\CivSim.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG:incremental /LTCGOUT:"x64\Release\CivSim.iobj" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\User\source\repos\Shreddan\Civ-Clicker\x64\Release\CivSim.lib" /MACHINE:X64 x64\Release\Button.obj
+         x64\Release\CivSim.obj
+         x64\Release\Engine.obj
+         Generating code
+         Previous IPDB not found, fall back to full compilation.
+     1>C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Button.cpp(51): warning C4715: 'Button::onInteract': not all control paths return a value
+         All 1676 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+         Finished generating code
+         CivSim.vcxproj -> C:\Users\User\source\repos\Shreddan\Civ-Clicker\x64\Release\CivSim.exe
+       FinalizeBuildStatus:
+         Deleting file "x64\Release\CivSim.tlog\unsuccessfulbuild".
+         Touching "x64\Release\CivSim.tlog\CivSim.lastbuildstate".
+     1>Done Building Project "C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\CivSim.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+       "C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\CivSim.vcxproj" (Build target) (1) ->
+       (ClCompile target) -> 
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Button.cpp(22,67): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Button.cpp(22,47): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Button.cpp(31,82): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Button.cpp(31,73): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Button.cpp(31,47): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Button.cpp(31,32): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.h(126,33): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.h(127,39): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.h(128,36): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.h(129,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.h(130,33): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.h(126,33): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.h(127,39): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.h(128,36): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.h(129,34): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.h(130,33): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.cpp(98,33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.cpp(99,33): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.cpp(180,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.cpp(184,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.cpp(189,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.cpp(193,34): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.cpp(196,30): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.cpp(197,28): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.cpp(198,27): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Engine.cpp(524,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+
+
+       "C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\CivSim.vcxproj" (Build target) (1) ->
+       (Link target) -> 
+         C:\Users\User\source\repos\Shreddan\Civ-Clicker\CivSim\Button.cpp(51): warning C4715: 'Button::onInteract': not all control paths return a value
+
+    27 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:11.72
