@@ -1,7 +1,13 @@
 #pragma once
 #include "Button.h"
-#include "Achievement.h"
 #include <discord.h>
+
+struct Achievement
+{
+	Achievement(std::string name, bool ach) { this->name = name, this->isComplete = ach; }
+	std::string name;
+	bool isComplete;
+};
 
 class Engine : public olc::PixelGameEngine
 {
@@ -28,7 +34,7 @@ public:
 
 	void userInput(int& ID);
 
-	//void userInput();
+	void checkA(int i);
 
 	void populateButtonVec();
 
@@ -61,23 +67,5 @@ protected:
 	int gameTick = 0;
 	int PopTick = 0;
 	float tick = 0.0f;
-
-	//Achievement
-	std::string achieve1 = "Another House!";
-	std::string achieve2 = "Dabbling Farmer!";
-	std::string achieve3 = "Timberrrr!";
-	std::string achieve4 = "Expansion!";
-	bool anotherHouseComplete = false;
-	bool farmHandComplete = false;
-	bool timberrrComplete = false;
-	bool expansionComplete = false;
-	float alpha0 = 1.0f;
-	float timeToFade = 3;
-	int alpha1 = 0;
-	int alpha2 = 0;
-	int alpha3 = 0;
-	int alpha4 = 0;
-
-
 };
 

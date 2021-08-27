@@ -189,11 +189,30 @@ void Engine::userInput(int& ID)
 		}
 		break;
 	}
+	case 20:
+	{
+		break;
 	}
+	case 21:
+	{
+		break;
+	}
+	}
+}
+
+void Engine::checkA(int i)
+{
+	labels.emplace_back(80, 100, ach[i].name, olc::GREEN, Achievements, 0, 0, 2)
 }
 
 void Engine::populateButtonVec()
 {
+	ach.emplace_back("Another House!", false);
+	ach.emplace_back("Dabbling Farmer!", false);
+	ach.emplace_back("Timberrrr!", false);
+	ach.emplace_back("Expansion!", false);
+
+
 	Main.emplace_back("Start", 420, 150, 300, 60, GameScreen, 0, olc::DARK_GREY, 3, true);
 	Main.emplace_back("Options", 420, 250, 300, 60, Options, 0, olc::DARK_GREY, 3, true);
 	Main.emplace_back("Quit", 420, 350, 300, 60, -1, 0, olc::DARK_GREY, 3, true);
@@ -234,6 +253,8 @@ void Engine::populateButtonVec()
 	Upgrade.emplace_back("Back", 500, 550, 110, 50, GameScreen, 0, olc::DARK_GREY, 2, true, olc::WHITE);
 
 	Achieve.emplace_back("Back", 500, 550, 110, 50, GameScreen, 0, olc::DARK_GREY, 2, true, olc::WHITE);
+
+	Option.emplace_back("Back", 420, 350, 300, 60, GameScreen, 0, olc::DARK_GREY, 2, true, olc::WHITE);
 
 	labels.emplace_back(50, 100, civ->type, olc::DARK_GREEN, GameScreen, 0, 0, 3);
 	labels.emplace_back(350, 50, "Population = ", olc::WHITE, GameScreen, 1, 2, 3);
@@ -416,7 +437,6 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 		}
 
 		SetPixelMode(olc::Pixel::ALPHA);
-		DrawString(80, 100, achieve1, olc::Pixel(255, 255, 255, alpha1), 2U);
 		DrawString(80, 130, achieve2, olc::Pixel(255, 255, 255, alpha2), 2U);
 		DrawString(80, 160, achieve3, olc::Pixel(255, 255, 255, alpha3), 2U);
 		DrawString(80, 190, achieve4, olc::Pixel(255, 255, 255, alpha4), 2U);
@@ -436,11 +456,15 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 	}
 	case Options:
 	{
-		FillRect(150, 50, 800, 500, olc::GREY);
-		//Buttons
-		FillRect(420, 350, 300, 60, olc::DARK_GREY);
-		//Button Text
-		DrawString(520, 370, "Back", olc::BLACK, 3U);
+		for (size_t i = 0; i < Option.size(); i++)
+		{
+			Option[i].DrawSelf(this);
+			Option[i].onHover(this);
+			if (Option[i].onInteract(this))
+			{
+				GameState = Option[i].interaction.first;
+			}
+		}
 		break;
 	}
 	case -1:
@@ -452,10 +476,10 @@ bool Engine::OnUserUpdate(float fElapsedTime)
 	}
 
 
-	if (alpha0 > 0)
+	/*if (alpha0 > 0)
 	{
 		alpha0 -= fElapsedTime / timeToFade;
-	}
+	}*/
 
 	if (civ->IdlePop <= 0)
 	{
